@@ -1,0 +1,65 @@
+generated: '2026-08-22'
+method: probed
+source: https://hiverhq.com/.well-known/oauth-protected-resource
+name: Hiver MCP surface
+status: advertised-unreachable
+server_published: false
+deployment:
+  mode: none
+  endpoint: ''
+  install: ''
+  package: ''
+  auth: oauth
+  verified: probed
+finding: >-
+  Hiver serves a valid RFC 9728 protected-resource document on its own marketing host declaring
+  an MCP resource at https://hiverhq.com/wp-json/mcp/mcp-oauth-server, paired with an RFC 8414
+  authorization-server document (PKCE S256, authorization_code + refresh_token, scope "mcp",
+  public clients). The declared resource does NOT answer: every request to it - and to the whole
+  WordPress REST namespace - returns HTTP 403 {"code":"rest_disabled","message":"REST API
+  disabled."}. This is a WordPress MCP plugin's discovery metadata left served on the marketing
+  CMS after the REST API underneath it was switched off. It is not a Hiver product surface, it
+  does not front the Hiver customer-service API at api2.hiverhq.com, and no agent can call it.
+pointer_decision: >-
+  No `MCPServer` pointer was wired into apis.yml. The Kin Score weights MCPServer at 12 points on
+  agent readiness precisely because it asserts an agent can reach the provider; asserting it here
+  would credit Hiver with an agent surface that returns 403 on every request.
+probes:
+  - url: https://hiverhq.com/.well-known/oauth-authorization-server
+    method: GET
+    status: 200
+    result: valid RFC 8414 metadata (saved to well-known/hiver-oauth-authorization-server.json)
+  - url: https://hiverhq.com/.well-known/oauth-protected-resource
+    method: GET
+    status: 200
+    result: valid RFC 9728 metadata (saved to well-known/hiver-oauth-protected-resource.json)
+  - url: https://hiverhq.com/wp-json/mcp/mcp-oauth-server
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    status: 403
+    result: '{"code":"rest_disabled","message":"REST API disabled."}'
+  - url: https://hiverhq.com/wp-json/mcp/mcp
+    method: POST
+    status: 403
+    result: '{"code":"rest_disabled","message":"REST API disabled."}'
+  - url: https://hiverhq.com/wp-json/
+    method: POST
+    status: 403
+    result: '{"code":"rest_disabled","message":"REST API disabled."}'
+third_party_servers:
+  - name: viaSocket MCP for Hiver
+    url: https://viasocket.com/mcp/hiver
+    first_party: false
+    note: >-
+      A third-party aggregator wraps Hiver among thousands of apps. Not published, operated or
+      endorsed by Hiver, and therefore not counted as a Hiver agent surface.
+candidate_tools:
+  status: not-derived
+  note: >-
+    A candidate tool list could be derived from the 12 operations in
+    openapi/hiver-api-openapi.json, but no server exists to host it. skills/ carries the
+    agent-facing packaging instead, grounded in the same real operationIds.
+recommendation_to_provider: >-
+  Either remove the stale /.well-known/oauth-* pair from hiverhq.com (it currently advertises a
+  dead resource to every MCP client that probes the domain), or stand up a real MCP server in
+  front of the v1 REST API. The 12 published operations map cleanly to tools.

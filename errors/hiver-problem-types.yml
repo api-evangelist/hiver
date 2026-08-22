@@ -1,0 +1,77 @@
+generated: '2026-08-22'
+method: searched
+source: https://developer.hiverhq.com/hiver-api
+derived_from: openapi/hiver-api-openapi.json
+name: Hiver API error catalog
+format: proprietary
+rfc9457: false
+content_type: application/json
+summary: >-
+  Hiver documents a status-code table and two error envelopes in the developer-portal
+  introduction. It does not publish an application-level error-code registry, and the OpenAPI
+  declares only success responses, so no 4xx/5xx shape is derivable from the contract.
+envelopes:
+  - shape: '{"errors": [{"message": "Actual Error message"}]}'
+    note: Array form; multiple messages possible.
+  - shape: '{"Message": "Actual Error Message"}'
+    note: Single form with a capitalised key. Clients must handle both spellings.
+status_codes:
+  - status: 200
+    title: Success
+    meaning: Request succeeded, body returned.
+    retryable: false
+  - status: 204
+    title: Success - No response
+    meaning: Request succeeded with no response body (returned by the conversation PATCH).
+    retryable: false
+  - status: 400
+    title: Bad request
+    meaning: Request sent without required params.
+    remediation: Fix the request; do not retry unchanged.
+    retryable: false
+  - status: 401
+    title: Forbidden - Not authorised to access
+    meaning: Missing, disabled or invalid API key.
+    remediation: >-
+      Confirm the Authorization header is `Bearer <key>` and that the app toggle is enabled in
+      Admin Panel -> Integrations -> Developer APIs.
+    retryable: false
+  - status: 403
+    title: Forbidden - Not authorised to access
+    meaning: Same title as 401 in Hiver's own table; the two are not distinguished.
+    retryable: false
+  - status: 404
+    title: Not found
+    meaning: Request entity not found.
+    retryable: false
+  - status: 429
+    title: Too many requests
+    meaning: Account rate limit exceeded (1 RPS, or 5000 requests/day).
+    remediation: >-
+      Retry with exponential backoff. Continuous retries while still 429ing can get the
+      client IP or API key blacklisted.
+    retryable: true
+  - status: 500
+    title: Internal server error
+    meaning: Server-side failure.
+    remediation: >-
+      'If this happens, get in touch with us, or watch for any degradation in status.hiverhq.com'
+    retryable: true
+gaps:
+  - id: no-error-responses-in-spec
+    detail: >-
+      All 12 operations in openapi/hiver-api-openapi.json declare ONLY their success response
+      (200/201/204). Not one 4xx or 5xx response is described, so a generated client has no
+      typed error path even though the prose documents seven status codes.
+  - id: two-envelopes
+    detail: >-
+      Two mutually incompatible error envelopes are documented (`errors[].message` and
+      `Message`) with no rule stating which endpoint returns which.
+  - id: no-error-code-registry
+    detail: >-
+      No stable machine-readable error codes are published - only HTTP status plus a free-text
+      human message, which cannot be branched on safely.
+  - id: 401-403-conflated
+    detail: >-
+      Hiver's own table gives 401 and 403 the same title ("Forbidden - Not authorised to
+      access"), so a client cannot tell an auth failure from an authorization failure.

@@ -1,23 +1,146 @@
 aid: hiver
 name: Hiver
-description: 'Hiver is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Hiver (Hiver Inc., originally GrexIt) builds an AI-powered customer service platform for teams
+  that run support out of shared email addresses. It ships in two forms: Hiver in Gmail, a
+  Chrome-extension helpdesk that turns shared inboxes like support@ and billing@ into assignable,
+  SLA-tracked queues without leaving Gmail; and Hiver Omni, a standalone omnichannel platform
+  covering email, live chat, Slack, voice, WhatsApp, a help center and a customer portal. Hiver
+  publishes a public REST API for Shared Inboxes, conversations, users, tags and internal notes,
+  documented on a Theneo developer portal with a downloadable OpenAPI 3.0.2 contract, and gates
+  API access to its Pro plan and above.
+image: https://hiverhq.com/wp-content/uploads/2025/05/hiver-dark-logo@2x.png
 url: https://raw.githubusercontent.com/api-evangelist/hiver/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-22'
 modified: '2026-08-22'
 tags:
 - Company
-apis: []
+- Customer Service
+- Help Desk
+- Shared Inbox
+- Email
+- Ticketing
+- Customer Support
+- Collaboration
+- Gmail
+- Google Workspace
+- Omnichannel
+- Live Chat
+- SaaS
+- Artificial Intelligence
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-08-22'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v1
+apis:
+- name: Hiver API
+  description: >-
+    The Hiver REST API (v1) exposes Shared Inboxes and their conversations, users, tags and
+    internal notes. Twelve operations across two resources let an integration list and read
+    inboxes, enumerate and search inbox users and tags, create tags, list and read conversations,
+    update a conversation's status/assignee/tags, create a shared draft and post an internal note.
+    Authentication is a single admin-scoped API key sent as an HTTP Bearer token; responses are
+    JSON wrapped in a `data` envelope with opaque-cursor pagination.
+  humanURL: https://developer.hiverhq.com/hiver-api
+  baseURL: https://api2.hiverhq.com/v1
+  tags:
+  - Customer Service
+  - Shared Inbox
+  - Conversations
+  - Tags
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/hiver-api-openapi.json
+  - type: Documentation
+    url: https://developer.hiverhq.com/hiver-api
+  - type: APIReference
+    url: https://developer.hiverhq.com/api-runner/hiverhq/hiver-api
+  - type: GettingStarted
+    url: https://help.hiverhq.com/hiver-api/hiver-api
+  - type: Authentication
+    url: authentication/hiver-authentication.yml
+  - type: Conventions
+    url: conventions/hiver-conventions.yml
+  - type: ErrorCatalog
+    url: errors/hiver-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/hiver-rate-limits.yml
+  - type: DataModel
+    url: data-model/hiver-data-model.yml
+  - type: Overlay
+    url: overlays/hiver-api-overlay.yaml
+  - type: Lifecycle
+    url: lifecycle/hiver-lifecycle.yml
 common:
 - type: Website
-  url: https://forgeglobal.com/hiver_stock/
+  url: https://hiverhq.com/
+- type: DeveloperPortal
+  url: https://developer.hiverhq.com/
+- type: Documentation
+  url: https://developer.hiverhq.com/hiver-api
+- type: APIReference
+  url: https://developer.hiverhq.com/api-runner/hiverhq/hiver-api
+- type: GettingStarted
+  url: https://help.hiverhq.com/hiver-api/hiver-api
+- type: Support
+  url: https://help.hiverhq.com/
+- type: Blog
+  url: https://hiverhq.com/blog
+- type: GitHubOrganization
+  url: https://github.com/GrexIt
+- type: Roadmap
+  url: https://updates.hiverhq.com/
+- type: ChangeLog
+  url: https://updates.hiverhq.com/changelog
+- type: StatusPage
+  url: https://status.hiverhq.com/
+- type: Pricing
+  url: https://hiverhq.com/pricing
+- type: SignUp
+  url: https://hiverhq.com/signup
+- type: TermsOfService
+  url: https://hiverhq.com/terms
+- type: PrivacyPolicy
+  url: https://hiverhq.com/privacy
+- type: Security
+  url: https://hiverhq.com/disclosure
+- type: TrustCenter
+  url: https://trustcenter.hiverhq.com/
+- type: Compliance
+  url: https://hiverhq.com/security-center
+- type: Integrations
+  url: https://hiverhq.com/integrations
+- type: Lifecycle
+  url: lifecycle/hiver-lifecycle.yml
+- type: ChangeLog
+  url: changelog/hiver-changelog.yml
+- type: Plans
+  url: plans/hiver-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/hiver-rate-limits.yml
+- type: Conformance
+  url: conformance/hiver-conformance.yml
+- type: TrustCenter
+  url: security/hiver-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/hiver-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/hiver-domain-security.yml
+- type: WellKnown
+  url: well-known/hiver-well-known.yml
+- type: LLMsTxt
+  url: llms/hiver-llms.txt
+- type: Packages
+  url: packages/hiver-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml

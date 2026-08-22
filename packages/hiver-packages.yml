@@ -1,0 +1,98 @@
+generated: '2026-08-22'
+method: searched
+source: 'registry.npmjs.org search + https://developer.hiverhq.com/hiver-api'
+name: Hiver packages
+client_sdk_count: 0
+official_package_count: 6
+summary: >-
+  Hiver publishes NO client SDK for its REST API in any language. The developer portal documents
+  the API with raw curl only, and neither github.com/GrexIt (Hiver's verified GitHub org, one
+  public repo: a 2019 fork of react-native-google-signin) nor github.com/Hiverhq (zero public
+  repos) carries a client library. The npm packages below ARE published by Hiver staff accounts
+  but are internal engineering tooling - a design system, Claude Code skills, connector app
+  shells - not API clients.
+sdk_gap: >-
+  A consumer integrating the Hiver API today hand-rolls the Bearer header, the `data` envelope,
+  the opaque `next_page` cursor and 429 backoff. There is no first-party client to depreciate,
+  and no community client on npm or PyPI that wraps api2.hiverhq.com.
+registries_checked:
+  - registry: npm
+    queries: ['hiver', 'hiverhq', '@hiverhq/sdk', 'hiver-api', 'hiver-sdk']
+    result: 'No API client. @hiverhq scope does not exist (404). hiver-api / hiver-sdk 404.'
+  - registry: pypi
+    queries: ['hiver', 'hiverhq', 'hiver-api']
+    result: 'hiverhq 404, hiver-api 404. `hiver` exists but is unrelated to Hiver Inc.'
+packages:
+  - name: '@hiver/connector-agent'
+    registry: npm
+    language: javascript
+    official: true
+    api_client: false
+    version: 4.21.4
+    published: '2026-08-20'
+    url: https://www.npmjs.com/package/@hiver/connector-agent
+    ownership_evidence: >-
+      Maintainer set includes hiver-dev-engineering, lukagrexit, aniket-hiver and anantha_hiver -
+      the same accounts that maintain hiver-account-info, whose repository is
+      github.com/GrexIt/hiver-account-info (GrexIt is Hiver's verified GitHub org).
+    note: Internal connector app shell (React/Vite), not a Hiver API client library.
+  - name: '@hiver/connector-admin'
+    registry: npm
+    language: javascript
+    official: true
+    api_client: false
+    version: 4.19.0
+    published: '2026-08-18'
+    url: https://www.npmjs.com/package/@hiver/connector-admin
+    note: Internal connector admin app shell, not an API client.
+  - name: '@hiver/sde-ai-kit'
+    registry: npm
+    language: javascript
+    official: true
+    api_client: false
+    version: 1.0.3
+    published: '2026-08-07'
+    url: https://www.npmjs.com/package/@hiver/sde-ai-kit
+    note: 'Hiver SDE AI Kit - shared Claude Code skills, agents and marketplace plugins for Hiver teams.'
+  - name: '@hiver/skills'
+    registry: npm
+    language: javascript
+    official: true
+    api_client: false
+    version: 1.0.9
+    published: '2026-07-14'
+    url: https://www.npmjs.com/package/@hiver/skills
+    note: Shared Claude Code skills and agents for Hiver teams. Internal developer tooling.
+  - name: omni-ds-ui
+    registry: npm
+    language: javascript
+    official: true
+    api_client: false
+    version: 1.0.11
+    published: '2026-04-05'
+    url: https://www.npmjs.com/package/omni-ds-ui
+    ownership_evidence: 'Maintainer shankar-hiver; description "Hiver Omni Design System components".'
+    note: Hiver Omni design-system React components. UI library, not an API client.
+  - name: hiver-account-info
+    registry: npm
+    language: javascript
+    official: true
+    api_client: false
+    version: 1.0.0
+    published: '2019-08-16'
+    url: https://www.npmjs.com/package/hiver-account-info
+    repository: https://github.com/GrexIt/hiver-account-info
+    note: >-
+      'Module to call hiver apis to store the hiver related account data.' The only npm package
+      Hiver has published that touches its own APIs, and it is an internal 2019 module last
+      released seven years ago - not a supported client.
+    decay_signal: true
+excluded:
+  - name: '@hiver.sh/client'
+    reason: Different company - hiver.sh agent runtime, unrelated to Hiver Inc.
+  - name: hiverfinance
+    reason: Different company - Hiver Finance.
+  - name: '@pipedream/hiver'
+    reason: Third-party (Pipedream) integration component, not first-party.
+  - name: '@pipedream/hiver_omni'
+    reason: Third-party (Pipedream) integration component, not first-party.

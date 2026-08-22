@@ -1,0 +1,158 @@
+generated: '2026-08-22'
+method: probed
+source: probe of /.well-known/* on every Hiver host
+checked: '2026-08-22'
+name: Hiver /.well-known probe
+summary: >-
+  Two real /.well-known documents are served, both on the marketing host hiverhq.com, and both
+  belong to a WordPress MCP plugin - not to the Hiver REST API. No security.txt, no api-catalog,
+  no openid-configuration and no agent card were found on any host.
+false_positive_note: >-
+  developer.hiverhq.com (Theneo) and help.hiverhq.com (Hiver's own KB app) are single-page apps
+  that answer HTTP 200 with an HTML shell for EVERY /.well-known/* path. Those 200s are recorded
+  below as `soft_200: true` and are NOT documents.
+hosts:
+  - host: hiverhq.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: hiver-oauth-authorization-server.json
+        content_type: application/json
+        note: >-
+          RFC 8414 authorization-server metadata. issuer https://hiverhq.com, PKCE S256,
+          authorization_code + refresh_token, single scope "mcp", public clients
+          (token_endpoint_auth_methods_supported ["none"]).
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: hiver-oauth-protected-resource.json
+        content_type: application/json
+        note: >-
+          RFC 9728 protected-resource metadata naming
+          https://hiverhq.com/wp-json/mcp/mcp-oauth-server as the resource. That resource does
+          not answer - see mcp/hiver-mcp.yml.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: api2.hiverhq.com
+    note: Production API host. Every /.well-known path returns 401 {"message":"Unauthorized"}.
+    documents:
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/oauth-protected-resource
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+  - host: api.hiverhq.com
+    note: >-
+      Secondary API host (AWS API Gateway; root returns {"new_analytics":{"status":"up"}}).
+      Every /.well-known path returns 403 {"message":"Missing Authentication Token"}.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+  - host: developer.hiverhq.com
+    note: Theneo-hosted developer portal SPA - every path 200s with an HTML shell.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/openid-configuration
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/api-catalog
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/agent-card.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/agent.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+  - host: help.hiverhq.com
+    note: Hiver's own help-center app (app.hiverkb.com) - SPA, mixed 200/404 shells.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/agent-card.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/agent.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+security_txt:
+  served: false
+  note: >-
+    No RFC 9116 security.txt on any Hiver host, even though Hiver runs a published vulnerability
+    disclosure policy at https://hiverhq.com/disclosure with a security@hiverhq.com contact.
+    Publishing a security.txt pointing at that page is a one-file fix.
+agent_card:
+  found: false
+  note: >-
+    Probed /.well-known/agent-card.json and the legacy /.well-known/agent.json on all five
+    hosts. Every 200 was an SPA HTML shell; no JSON object with AgentCard shape exists.
+    No a2a/ artifact was written.

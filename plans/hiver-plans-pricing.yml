@@ -1,0 +1,117 @@
+generated: '2026-08-22'
+method: searched
+source: https://hiverhq.com/pricing/hiver-omni
+sources:
+  - https://hiverhq.com/pricing/hiver-omni
+  - https://hiverhq.com/pricing/hiver-in-gmail
+name: Hiver plans and pricing
+currency: USD
+billing_unit: per user per month
+plan_count: 6
+seat_policy: >-
+  All Hiver plans start at 2 seats. Seats increase from 2 to 5, then in increments of 5
+  (10, 15, 20, and so on).
+trial:
+  length_days: 7
+  tier_during_trial: Elite
+  credit_card_required: false
+  end_of_trial: Account is suspended; reactivation possible within 7 days of trial end.
+api_entitlement:
+  available_from: Pro
+  description: >-
+    'API access - Use Hiver's APIs to build custom integrations, automate workflows, and
+    connect Hiver with your own tools.' Listed under Pro on both product lines; the Growth
+    tier does not include API access.
+products:
+  - product: Hiver Omni
+    url: https://hiverhq.com/pricing/hiver-omni
+    description: Standalone omnichannel customer service platform (Gmail, Outlook, chat, Slack, voice, WhatsApp).
+    plans:
+      - name: Growth
+        price_annual: 25
+        price_monthly: 35
+        currency: USD
+        period: user/month
+        api_access: false
+        includes:
+          - AI Agents
+          - AI Copilot
+          - Skills
+          - AI Knowledge Builder
+          - Shared Inbox and ticketing
+          - Omnichannel (email, live chat, self-service)
+          - 24x7 support
+          - Rule-based Automations
+          - Pre-built Analytics
+          - Basic integrations
+      - name: Pro
+        price_annual: 55
+        price_monthly: 65
+        currency: USD
+        period: user/month
+        api_access: true
+        most_popular: true
+        includes:
+          - Everything in Growth
+          - Customer Portal
+          - Slack channel
+          - SLAs
+          - CSAT surveys
+          - Advanced Analytics
+          - Premium integrations
+          - API access
+      - name: Elite
+        price_annual: 85
+        price_monthly: 95
+        currency: USD
+        period: user/month
+        api_access: true
+        includes:
+          - Everything in Pro
+          - AI QA
+          - AI Insights
+          - Customer Intelligence
+          - Skill-based routing
+          - Custom Objects
+          - Personal to Shared Inbox rules
+          - SSO, HIPAA-compliant handling, and custom roles
+  - product: Hiver in Gmail
+    url: https://hiverhq.com/pricing/hiver-in-gmail
+    description: Gmail-native helpdesk delivered as a Chrome extension inside Gmail.
+    plans:
+      - name: Growth
+        price_annual: 25
+        price_monthly: 35
+        currency: USD
+        period: user/month
+        api_access: false
+      - name: Pro
+        price_annual: 55
+        price_monthly: 65
+        currency: USD
+        period: user/month
+        api_access: true
+        most_popular: true
+      - name: Elite
+        price_annual: 85
+        price_monthly: 95
+        currency: USD
+        period: user/month
+        api_access: true
+add_ons:
+  - name: Voice
+    price: 30
+    currency: USD
+    period: per voice seat/month
+    included_quota: 1000 minutes per voice seat/month, pooled across all voice seats
+    overage: $0.03 per minute
+    product: Hiver Omni
+discounts:
+  - audience: nonprofits and NGOs
+    detail: Discounted pricing for qualified nonprofit organisations; quoted via demo, not published.
+enterprise_gate: >-
+  Pro and Elite show a list price but only a 'Book a demo' CTA (no self-serve checkout);
+  Growth is the only self-serve 'Start free trial' tier.
+payment_processor: Stripe
+payment_note: Hiver does not store customers' credit card details.
+payment_source: https://hiverhq.com/security-center

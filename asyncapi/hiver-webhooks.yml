@@ -1,0 +1,37 @@
+generated: '2026-08-22'
+method: searched
+source: https://hiverhq.com/integrations
+name: Hiver event surface
+asyncapi_published: false
+webhook_catalog_published: false
+event_count: 0
+finding: >-
+  Hiver advertises webhooks on its own integrations page - 'Pull context and push updates with
+  APIs and webhooks. Open APIs and webhooks let you pull any data point in and push updates back
+  out.' - but publishes NO event catalog, NO payload schemas, NO subscription/registration
+  endpoint and NO AsyncAPI document. None of the 12 operations in
+  openapi/hiver-api-openapi.json is a webhook, and the developer portal's document tree contains
+  only three sections (Hiver API, Inbox, Conversations) with no events section.
+pointer_decision: >-
+  No `Webhooks` or `AsyncAPI` pointer was wired into apis.yml. A marketing sentence is not an
+  event surface: with no event names, no payloads and no way to subscribe, an integrator cannot
+  build against it. This is an honest absence, and it upgrades the moment Hiver publishes a
+  catalog.
+probes:
+  - url: https://developer.hiverhq.com/hiver-api
+    status: 200
+    result: >-
+      Theneo document tree enumerated - 12 sections, all REST, every one with isWebhook=false.
+  - url: https://hiverhq.com/integrations
+    status: 200
+    result: webhooks advertised in prose only
+  - url: https://help.hiverhq.com/hiver-api/hiver-api
+    status: 200
+    result: 'API key generation article only; no webhook documentation'
+third_party_claims:
+  note: >-
+    Third-party tutorial sites describe a `conversation.created` webhook event. That event name
+    could not be confirmed on any Hiver-controlled surface and is therefore NOT recorded here.
+recommendation_to_provider: >-
+  Publish the event names, payload schemas and the subscription endpoint. An AsyncAPI 3.0
+  document alongside the existing OpenAPI would make the advertised webhooks buildable.

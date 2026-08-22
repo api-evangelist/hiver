@@ -1,0 +1,75 @@
+generated: '2026-08-22'
+method: searched
+source: https://updates.hiverhq.com/changelog
+name: Hiver changelog
+platform: Canny
+scheme: dated-entries
+labels: [new, improved]
+product_lines: [Hiver Omni, Hiver in Gmail]
+rss_offered: true
+api_specific_entries: true
+note: >-
+  Hiver publishes a dated product changelog rather than an API-versioned release note stream;
+  API changes appear inline with product changes and carry no version number. Entries below are
+  the most recent window visible without pagination as of the probe date.
+entries:
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver Omni]
+    title: Open APIs for Hiver Omni
+    url: https://updates.hiverhq.com/changelog/open-apis-for-hiver-omni
+    api_impact: additions
+    highlights: >-
+      Hiver Omni APIs to programmatically manage Shared Inboxes, conversations, tags and users.
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver in Gmail]
+    title: Notes API
+    api_impact: additions
+    highlights: >-
+      Add Shared Notes, mention teammates and reply to existing notes via API. Corresponds to
+      POST /inboxes/{inboxId}/conversations/{conversationId}/notes in the published contract.
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver Omni, Hiver in Gmail]
+    title: Linear app
+    api_impact: none
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver Omni]
+    title: Collaborate on Slack from Hiver
+    api_impact: none
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver in Gmail]
+    title: Global Configuration
+    api_impact: none
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver in Gmail]
+    title: Share conversations with people from specific domains
+    api_impact: none
+  - date: '2026-07-30'
+    label: improved
+    products: [Hiver Omni, Hiver in Gmail]
+    title: Create Monday.com items and Trello cards faster
+    api_impact: none
+  - date: '2026-07-30'
+    label: new
+    products: [Hiver Omni, Hiver in Gmail]
+    title: Multi-user authentication for connected apps
+    api_impact: none
+  - date: '2026-07-30'
+    label: improved
+    products: [Hiver Omni, Hiver in Gmail]
+    title: Status sync for project management apps
+    api_impact: none
+  - date: '2026-07-30'
+    label: improved
+    products: [Hiver in Gmail]
+    title: Subject line conditions in Individual Inbox Automations
+    api_impact: none
+breaking_changes_published: false
+breaking_change_note: >-
+  No entry in the visible window is marked breaking, and Hiver publishes no breaking-change
+  policy or migration guide. Absence of a `breaking` label is not evidence of no breaking changes.

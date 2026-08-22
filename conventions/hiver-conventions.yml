@@ -1,0 +1,149 @@
+generated: '2026-08-22'
+method: searched
+source: https://developer.hiverhq.com/hiver-api
+name: Hiver API conventions
+summary: >-
+  Cross-cutting runtime semantics for the Hiver REST API, read from the provider's own
+  developer-portal introduction and confirmed against openapi/hiver-api-openapi.json.
+base_url: https://api2.hiverhq.com/v1
+media_type: application/json
+authentication:
+  style: bearer-api-key
+  header: Authorization
+  detail: authentication/hiver-authentication.yml
+versioning:
+  style: uri-path
+  current: v1
+  in_url: https://api2.hiverhq.com/v1
+  spec_version: 1.0.0
+  header_negotiation: none documented
+  detail: lifecycle/hiver-lifecycle.yml
+envelope:
+  success:
+    shape: '{"data": { ... }}'
+    note: Every successful body is wrapped in a top-level `data` object.
+  list:
+    shape: '{"data": {"results": [ ... ], "pagination": {"next_page": "<token>"}}}'
+  error:
+    shapes:
+      - '{"errors": [{"message": "Actual Error message"}]}'
+      - '{"Message": "Actual Error Message"}'
+    note: >-
+      Two error envelopes are documented and the key case differs between them
+      (`errors[].message` vs `Message`). RFC 9457 problem+json is NOT used.
+    detail: errors/hiver-problem-types.yml
+pagination:
+  style: opaque-cursor
+  request_params:
+    - name: limit
+      in: query
+      description: Limits the number of results in a page. Supported values are 10-100.
+      default: 10
+      min: 10
+      max: 100
+    - name: sort_by
+      in: query
+      description: Field to sort on. Supported fields vary per endpoint.
+    - name: sort_order
+      in: query
+      description: 'Sort direction. Supported values: asc, desc.'
+      default: asc
+    - name: next_page
+      in: query
+      description: Page token returned by the previous response.
+  response_fields:
+    - data.pagination.next_page
+  termination: Keep requesting until `next_page` returns null.
+  all_optional: true
+rate_limit_signaling:
+  documented_limits: true
+  status_on_exhaustion: 429
+  response_headers: none documented
+  note: >-
+    Hiver documents the numbers (1 RPS per account, 5000 requests/day) in prose but publishes
+    no RateLimit-*/X-RateLimit-*/Retry-After header contract, so an agent cannot read remaining
+    budget at runtime - it can only react to a 429.
+  detail: rate-limits/hiver-rate-limits.yml
+retry_guidance:
+  stated: 'If you get this error, retry with an exponential backoff.'
+  penalty: >-
+    'Continuous retries with 429 error could result in the client-ip/api-key getting blacklisted.'
+  source: https://developer.hiverhq.com/hiver-api
+idempotency:
+  supported: false
+  idempotency_key_header: none
+  note: >-
+    No Idempotency-Key header, no request-deduplication window and no idempotency section
+    appear anywhere in the Hiver developer portal or in the OpenAPI. The three write
+    operations (create tag, create shared draft, create note) are POSTs with no safe-retry
+    contract, which matters because Hiver simultaneously instructs clients to retry with
+    exponential backoff on 429.
+  status: absent
+request_id_tracing:
+  supported: not documented
+  note: No correlation/request-id header is documented or present in the spec.
+field_expansion:
+  supported: false
+sparse_fieldsets:
+  supported: false
+metadata_fields:
+  supported: false
+  note: No customer-defined metadata bag on Hiver objects in the public v1 surface.
+http_methods:
+  documented: [GET, POST, PATCH]
+  note: >-
+    'Hiver uses HTTP methods like GET, POST, PATCH etc for different types of operations.'
+    No DELETE operation exists in the published v1 contract.
+reversibility:
+  status: documented
+  grade_basis: >-
+    Reversal-shaped operations exist and are discoverable from the contract, but Hiver
+    publishes NO window, NO undo endpoint and NO delete endpoint, so this cannot be graded
+    `verified`. Never assume a window Hiver has not stated.
+  write_surface: true
+  write_operations:
+    - operationId: Inbox_inbox/create-tags-in-the-inbox
+      method: POST
+      path: /inboxes/{inbox_id}/tags
+      creates: tag
+      reversal: none published
+      note: >-
+        There is no DELETE /inboxes/{inbox_id}/tags/{id} in the v1 contract. A tag created
+        through the API cannot be removed through the API; removal is a manual admin-panel action.
+    - operationId: Conversations_conversations/update-conversation-in-the-inbox
+      method: PATCH
+      path: /inboxes/{inbox_id}/conversations/{conversation_id}
+      mutates: conversation status, assignee, tags
+      reversal: same operation
+      reversal_type: re-apply-previous-value
+      window: unbounded (no window published)
+      note: >-
+        The PATCH is a full state set, so any change it makes is reversible by issuing a second
+        PATCH carrying the prior values - but ONLY if the caller captured them first with
+        GET /inboxes/{inbox_id}/conversations/{conversation_id}. Hiver publishes no
+        server-side undo, no revision history endpoint and no restore window.
+    - operationId: Conversations_conversations/update-conversation-in-the-inbox-copy
+      method: POST
+      path: /inboxes/{inbox_id}/conversations/shared-drafts
+      creates: shared draft
+      reversal: none published via API
+      consequence: low
+      note: >-
+        A shared draft is not sent to the customer, so the blast radius of a mistake is
+        internal. No API delete/discard endpoint is published.
+    - operationId: Conversations_conversations/create-note-on-conversation
+      method: POST
+      path: /inboxes/{inboxId}/conversations/{conversationId}/notes
+      creates: internal note
+      reversal: none published via API
+      consequence: >-
+        Notes are internal-only and can mention teammates, which fires a notification. A note
+        posted in error cannot be deleted or edited through the v1 API.
+  agent_guidance: >-
+    Before any PATCH, GET and store the current conversation state - that read is the only
+    rollback material Hiver offers. Treat POST /notes and POST /tags as one-way doors.
+cross_links:
+  errors: errors/hiver-problem-types.yml
+  lifecycle: lifecycle/hiver-lifecycle.yml
+  authentication: authentication/hiver-authentication.yml
+  rate_limits: rate-limits/hiver-rate-limits.yml

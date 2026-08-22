@@ -1,0 +1,1909 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "hiver-api",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/inboxes": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "List all the inboxes",
+        "description": "List all the inboxes",
+        "operationId": "Inbox_inbox/list-all-the-inboxes",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "results": [
+                          {
+                            "id": "101",
+                            "display_name": "Customer Support",
+                            "channel_type": "email",
+                            "email": "info@example.com",
+                            "inbox_type": "user",
+                            "is_authorised": false,
+                            "source_user": {
+                              "id": "12323",
+                              "email": "source@example.com"
+                            },
+                            "created_at": 1709036168,
+                            "updated_at": 1709036168
+                          }
+                        ],
+                        "pagination": {
+                          "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                        }
+                      },
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": "101",
+                              "display_name": "Customer Support",
+                              "channel_type": "email",
+                              "email": "info@example.com",
+                              "inbox_type": "user",
+                              "is_authorised": false,
+                              "source_user": {
+                                "id": "12323",
+                                "email": "source@example.com"
+                              },
+                              "created_at": 1709036168,
+                              "updated_at": 1709036168
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "101"
+                              },
+                              "display_name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Customer Support"
+                              },
+                              "channel_type": {
+                                "type": "string",
+                                "description": "",
+                                "example": "email"
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "",
+                                "example": "info@example.com"
+                              },
+                              "inbox_type": {
+                                "type": "string",
+                                "description": "",
+                                "example": "user"
+                              },
+                              "is_authorised": {
+                                "type": "boolean",
+                                "description": "",
+                                "example": false
+                              },
+                              "source_user": {
+                                "type": "object",
+                                "description": "",
+                                "example": {
+                                  "id": "12323",
+                                  "email": "source@example.com"
+                                },
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "description": "",
+                                    "example": "12323"
+                                  },
+                                  "email": {
+                                    "type": "string",
+                                    "description": "",
+                                    "example": "source@example.com"
+                                  }
+                                }
+                              },
+                              "created_at": {
+                                "type": "number",
+                                "description": "",
+                                "example": 1709036168
+                              },
+                              "updated_at": {
+                                "type": "number",
+                                "description": "",
+                                "example": 1709036168
+                              }
+                            }
+                          }
+                        },
+                        "pagination": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                          },
+                          "properties": {
+                            "next_page": {
+                              "type": "string",
+                              "description": "",
+                              "example": "Gygskjhgkjythjjhkgjhgsdf="
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Get an inbox by id",
+        "description": "Get an Inbox by Id",
+        "operationId": "Inbox_inbox/get-an-inbox-by-id",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": "",
+              "description": "ID of the inbox to get details",
+              "default": "",
+              "format": "int64"
+            },
+            "description": "ID of the inbox to get details"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "id": "101",
+                        "display_name": "Customer Support",
+                        "channel_type": "email",
+                        "email": "info@example.com",
+                        "inbox_type": "user",
+                        "is_authorised": false,
+                        "source_user": {
+                          "id": "12323",
+                          "email": "source@example.com"
+                        },
+                        "created_at": 1709036168,
+                        "updated_at": 1709036168
+                      },
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "Id of the Inbox",
+                          "example": "101"
+                        },
+                        "display_name": {
+                          "type": "string",
+                          "description": "Name of the Inbox",
+                          "example": "Customer Support"
+                        },
+                        "channel_type": {
+                          "type": "string",
+                          "description": "Type of the channel",
+                          "example": "email"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "Email address of the inbox",
+                          "example": "info@example.com",
+                          "format": "email"
+                        },
+                        "inbox_type": {
+                          "type": "string",
+                          "description": "Type of the authentication done for the inbox",
+                          "example": "user",
+                          "format": "string"
+                        },
+                        "is_authorised": {
+                          "type": "boolean",
+                          "description": "True if Hiver has access to user's mailbox, False otherwise. If false, the access could've been lost and need to reinstated.",
+                          "example": false
+                        },
+                        "source_user": {
+                          "type": "object",
+                          "description": "The user from whom the inbound emails are added.",
+                          "example": {
+                            "id": "12323",
+                            "email": "source@example.com"
+                          },
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "",
+                              "example": "12323"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "",
+                              "example": "source@example.com"
+                            }
+                          }
+                        },
+                        "created_at": {
+                          "type": "integer",
+                          "description": "Creation timestamp",
+                          "example": 1709036168
+                        },
+                        "updated_at": {
+                          "type": "integer",
+                          "description": "Last update timestamp",
+                          "example": 1709036168
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/users": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Get all users in the inbox",
+        "description": "Get all users in the inbox",
+        "operationId": "Inbox_inbox/get-all-users-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of inbox to get the user list for",
+              "default": ""
+            },
+            "description": "ID of inbox to get the user list for",
+            "example": "343"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "results": [
+                          {
+                            "id": "456342",
+                            "first_name": "Phoebe",
+                            "last_name": "Buffay",
+                            "email": "p.buffay@friends.com",
+                            "phone_number": "+19876543444",
+                            "is_joined": false
+                          }
+                        ],
+                        "pagination": {
+                          "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                        }
+                      },
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": "456342",
+                              "first_name": "Phoebe",
+                              "last_name": "Buffay",
+                              "email": "p.buffay@friends.com",
+                              "phone_number": "+19876543444",
+                              "is_joined": false
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "456342"
+                              },
+                              "first_name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Phoebe"
+                              },
+                              "last_name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Buffay"
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "",
+                                "example": "p.buffay@friends.com"
+                              },
+                              "phone_number": {
+                                "type": "string",
+                                "description": "",
+                                "example": "+19876543444"
+                              },
+                              "is_joined": {
+                                "type": "boolean",
+                                "description": "",
+                                "example": false
+                              }
+                            }
+                          }
+                        },
+                        "pagination": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                          },
+                          "properties": {
+                            "next_page": {
+                              "type": "string",
+                              "description": "",
+                              "example": "Gygskjhgkjythjjhkgjhgsdf="
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/users/search": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Search users in the inbox",
+        "description": "Search users in the inbox",
+        "operationId": "Inbox_inbox/search-users-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of inbox to get the user list for",
+              "default": ""
+            },
+            "description": "ID of inbox to get the user list for",
+            "example": "343"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "bob@example.com",
+              "description": "Email address to be searched for by exact match",
+              "default": ""
+            },
+            "description": "Email address to be searched for by exact match",
+            "example": "bob@example.com"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "results": [
+                          {
+                            "id": "456342",
+                            "first_name": "Phoebe",
+                            "last_name": "Buffay",
+                            "email": "p.buffay@friends.com",
+                            "phone_number": "+19876543444",
+                            "is_joined": false
+                          }
+                        ],
+                        "pagination": {
+                          "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                        }
+                      },
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": "456342",
+                              "first_name": "Phoebe",
+                              "last_name": "Buffay",
+                              "email": "p.buffay@friends.com",
+                              "phone_number": "+19876543444",
+                              "is_joined": false
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "456342"
+                              },
+                              "first_name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Phoebe"
+                              },
+                              "last_name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Buffay"
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "",
+                                "example": "p.buffay@friends.com"
+                              },
+                              "phone_number": {
+                                "type": "string",
+                                "description": "",
+                                "example": "+19876543444"
+                              },
+                              "is_joined": {
+                                "type": "boolean",
+                                "description": "",
+                                "example": false
+                              }
+                            }
+                          }
+                        },
+                        "pagination": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                          },
+                          "properties": {
+                            "next_page": {
+                              "type": "string",
+                              "description": "",
+                              "example": "Gygskjhgkjythjjhkgjhgsdf="
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/tags": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Get tags in the inbox",
+        "description": "Get tags in the inbox",
+        "operationId": "Inbox_inbox/get-tags-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of inbox to get the user list for",
+              "default": ""
+            },
+            "description": "ID of inbox to get the user list for",
+            "example": "343"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "results": [
+                          {
+                            "id": "56789",
+                            "name": "Priority",
+                            "color_code": "#ce93d8",
+                            "type": "user",
+                            "created_at": 1708945347
+                          }
+                        ],
+                        "pagination": {
+                          "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                        }
+                      },
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": "56789",
+                              "name": "Priority",
+                              "color_code": "#ce93d8",
+                              "type": "user",
+                              "created_at": 1708945347
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "56789"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Priority"
+                              },
+                              "color_code": {
+                                "type": "string",
+                                "description": "",
+                                "example": "#ce93d8"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "",
+                                "example": "user"
+                              },
+                              "created_at": {
+                                "type": "number",
+                                "description": "",
+                                "example": 1708945347
+                              }
+                            }
+                          }
+                        },
+                        "pagination": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                          },
+                          "properties": {
+                            "next_page": {
+                              "type": "string",
+                              "description": "",
+                              "example": "Gygskjhgkjythjjhkgjhgsdf="
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Create tag in the inbox",
+        "description": "Create tag in the inbox",
+        "operationId": "Inbox_inbox/create-tags-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "",
+              "description": "ID of inbox to create the tag in it",
+              "default": ""
+            },
+            "description": "ID of inbox to create the tag in it"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "tag_id": 784268,
+                        "name": "Property 123",
+                        "color_hexcode": "#64b5f6",
+                        "background_hexcode": "#f2f4f5",
+                        "smid": 284967,
+                        "description": "Sales pipeline conversations"
+                      },
+                      "properties": {
+                        "tag_id": {
+                          "type": "number",
+                          "description": "",
+                          "example": 784268
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "",
+                          "example": "Property 123"
+                        },
+                        "color_hexcode": {
+                          "type": "string",
+                          "description": "",
+                          "example": "#64b5f6"
+                        },
+                        "background_hexcode": {
+                          "type": "string",
+                          "description": "",
+                          "example": "#f2f4f5"
+                        },
+                        "smid": {
+                          "type": "number",
+                          "description": "",
+                          "example": 284967
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "",
+                          "example": "Sales pipeline conversations"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Request body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "",
+                    "example": "Property 123"
+                  },
+                  "color_hexcode": {
+                    "type": "string",
+                    "description": "",
+                    "example": "#64b5f6"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "",
+                    "example": "Sales pipeline conversations"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/tags/search": {
+      "get": {
+        "tags": [
+          "Inbox"
+        ],
+        "summary": "Search tags in the inbox",
+        "description": "Search tags in the inbox",
+        "operationId": "Inbox_inbox/search-tags-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of inbox to get the user list for",
+              "default": ""
+            },
+            "description": "ID of inbox to get the user list for",
+            "example": "343"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Priority",
+              "description": "Name of the tag to be searched for",
+              "default": ""
+            },
+            "description": "Name of the tag to be searched for",
+            "example": "Priority"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "results": [
+                          {
+                            "id": "56789",
+                            "name": "Priority",
+                            "color_code": "#ce93d8",
+                            "type": "user",
+                            "created_at": 1708945347
+                          }
+                        ],
+                        "pagination": {
+                          "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                        }
+                      },
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": "56789",
+                              "name": "Priority",
+                              "color_code": "#ce93d8",
+                              "type": "user",
+                              "created_at": 1708945347
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "56789"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "Priority"
+                              },
+                              "color_code": {
+                                "type": "string",
+                                "description": "",
+                                "example": "#ce93d8"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "",
+                                "example": "user"
+                              },
+                              "created_at": {
+                                "type": "number",
+                                "description": "",
+                                "example": 1708945347
+                              }
+                            }
+                          }
+                        },
+                        "pagination": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "next_page": "Gygskjhgkjythjjhkgjhgsdf="
+                          },
+                          "properties": {
+                            "next_page": {
+                              "type": "string",
+                              "description": "",
+                              "example": "Gygskjhgkjythjjhkgjhgsdf="
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/conversations": {
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Get conversations in the inbox",
+        "description": "Get conversations in the inbox\n\n**Note:** The Gmail Thread IDs returned in the response are scoped to the **user authenticated with the shared mailbox email address (the source user)**. These IDs can be used directly in other Hiver APIs that require Gmail identifiers.",
+        "operationId": "Conversations_conversations/get-conversations-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "",
+              "description": "ID of the inbox to get the user list for",
+              "default": "343"
+            },
+            "description": "ID of the inbox to get the user list for"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "results": [
+                          {
+                            "id": 538706170,
+                            "assignee": {
+                              "assignee_type": "user",
+                              "assignee_id": 1028399
+                            },
+                            "status": "open",
+                            "tag_ids": [],
+                            "gmail_thread_id": "19cfee91188070f8",
+                            "private_permalink": "https://v2.hiverhq.com/permalinks/pvt/201c00fa",
+                            "public_permalink": "https://v2.hiverhq.com/permalinks/pub/42a83f80581842e683c0f827a090cdca40c1334f"
+                          }
+                        ],
+                        "pagination": {
+                          "next_page": "eyJjdXJzb3IiOiJleUpuYldGcGJIVnVhWFJmYVdRaU9qVXpOek16TWpJeE9Dd2lYM0J2YVc1MGMxUnZUbVY0ZEVsMFpXMXpJanAwY25WbGZRIiwic29ydF9vcmRlciI6ImRlc2MiLCJzb3J0X2J5IjoiaWQifQ=="
+                        }
+                      },
+                      "properties": {
+                        "results": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": 538706170,
+                              "assignee": {
+                                "assignee_type": "user",
+                                "assignee_id": 1028399
+                              },
+                              "status": "open",
+                              "tag_ids": [],
+                              "gmail_thread_id": "19cfee91188070f8",
+                              "private_permalink": "https://v2.hiverhq.com/permalinks/pvt/201c00fa",
+                              "public_permalink": "https://v2.hiverhq.com/permalinks/pub/42a83f80581842e683c0f827a090cdca40c1334f"
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number",
+                                "description": "",
+                                "example": 538706170
+                              },
+                              "assignee": {
+                                "type": "object",
+                                "description": "",
+                                "example": {
+                                  "assignee_type": "user",
+                                  "assignee_id": 1028399
+                                },
+                                "properties": {
+                                  "assignee_type": {
+                                    "type": "string",
+                                    "description": "",
+                                    "example": "user"
+                                  },
+                                  "assignee_id": {
+                                    "type": "number",
+                                    "description": "",
+                                    "example": 1028399
+                                  }
+                                }
+                              },
+                              "status": {
+                                "type": "string",
+                                "description": "",
+                                "example": "open"
+                              },
+                              "tag_ids": {
+                                "type": "array",
+                                "description": "",
+                                "example": [],
+                                "items": {}
+                              },
+                              "gmail_thread_id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "19cfee91188070f8"
+                              },
+                              "private_permalink": {
+                                "type": "string",
+                                "description": "",
+                                "example": "https://v2.hiverhq.com/permalinks/pvt/201c00fa"
+                              },
+                              "public_permalink": {
+                                "type": "string",
+                                "description": "",
+                                "example": "https://v2.hiverhq.com/permalinks/pub/42a83f80581842e683c0f827a090cdca40c1334f"
+                              }
+                            }
+                          }
+                        },
+                        "pagination": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "next_page": "eyJjdXJzb3IiOiJleUpuYldGcGJIVnVhWFJmYVdRaU9qVXpOek16TWpJeE9Dd2lYM0J2YVc1MGMxUnZUbVY0ZEVsMFpXMXpJanAwY25WbGZRIiwic29ydF9vcmRlciI6ImRlc2MiLCJzb3J0X2J5IjoiaWQifQ=="
+                          },
+                          "properties": {
+                            "next_page": {
+                              "type": "string",
+                              "description": "",
+                              "example": "eyJjdXJzb3IiOiJleUpuYldGcGJIVnVhWFJmYVdRaU9qVXpOek16TWpJeE9Dd2lYM0J2YVc1MGMxUnZUbVY0ZEVsMFpXMXpJanAwY25WbGZRIiwic29ydF9vcmRlciI6ImRlc2MiLCJzb3J0X2J5IjoiaWQifQ=="
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/conversations/{conversation_id}": {
+      "get": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Get a conversation in the inbox",
+        "description": "Get a conversation in the inbox\n\n**Note:**\n\n*   The `conversation_id` field accepts either **Hiver conversation ID** or **Gmail thread ID**.\n    \n*   The Gmail Thread ID and Message IDs returned in the response are scoped to the **user authenticated with the shared mailbox email address (the source user)**. These IDs can be used directly in other Hiver APIs that require Gmail identifiers.",
+        "operationId": "Conversations_conversations/get-a-conversation-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of the inbox to get the user list for",
+              "default": ""
+            },
+            "description": "ID of the inbox to get the user list for",
+            "example": "343"
+          },
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "Unique identifier of the conversation, which can be either a Hiver Conversation ID or a Gmail Thread ID",
+              "default": ""
+            },
+            "description": "Unique identifier of the conversation, which can be either a Hiver Conversation ID or a Gmail Thread ID",
+            "example": "343"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "description": "",
+                      "example": [
+                        {
+                          "id": "538706170",
+                          "assignee": {
+                            "assignee_type": "user",
+                            "assignee_id": 1028399
+                          },
+                          "status": "open",
+                          "tag_ids": [],
+                          "gmail_thread_id": "19cfee91188070f8",
+                          "private_permalink": "https://v2.hiverhq.com/permalinks/pvt/201c00fa",
+                          "public_permalink": "https://v2.hiverhq.com/permalinks/pub/42a83f80581842e683c0f827a090cdca40c1334f",
+                          "message_ids": [
+                            {
+                              "hiver_message_id": 834466048,
+                              "gmail_message_id": "19cfee91188070f8"
+                            }
+                          ]
+                        }
+                      ],
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "",
+                            "example": "538706170"
+                          },
+                          "assignee": {
+                            "type": "object",
+                            "description": "",
+                            "example": {
+                              "assignee_type": "user",
+                              "assignee_id": 1028399
+                            },
+                            "properties": {
+                              "assignee_type": {
+                                "type": "string",
+                                "description": "",
+                                "example": "user"
+                              },
+                              "assignee_id": {
+                                "type": "number",
+                                "description": "",
+                                "example": 1028399
+                              }
+                            }
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "",
+                            "example": "open"
+                          },
+                          "tag_ids": {
+                            "type": "array",
+                            "description": "",
+                            "example": [],
+                            "items": {}
+                          },
+                          "gmail_thread_id": {
+                            "type": "string",
+                            "description": "",
+                            "example": "19cfee91188070f8"
+                          },
+                          "private_permalink": {
+                            "type": "string",
+                            "description": "",
+                            "example": "https://v2.hiverhq.com/permalinks/pvt/201c00fa"
+                          },
+                          "public_permalink": {
+                            "type": "string",
+                            "description": "",
+                            "example": "https://v2.hiverhq.com/permalinks/pub/42a83f80581842e683c0f827a090cdca40c1334f"
+                          },
+                          "message_ids": {
+                            "type": "array",
+                            "description": "",
+                            "example": [
+                              {
+                                "hiver_message_id": 834466048,
+                                "gmail_message_id": "19cfee91188070f8"
+                              }
+                            ],
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "hiver_message_id": {
+                                  "type": "number",
+                                  "description": "",
+                                  "example": 834466048
+                                },
+                                "gmail_message_id": {
+                                  "type": "string",
+                                  "description": "",
+                                  "example": "19cfee91188070f8"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Update conversation in the inbox",
+        "description": "Update conversation in the inbox\n\n**Note**: The `conversation_id` field accepts either **Hiver conversation ID** or **Gmail thread ID.**",
+        "operationId": "Conversations_conversations/update-conversation-in-the-inbox",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of the inbox to get the user list for",
+              "default": ""
+            },
+            "description": "ID of the inbox to get the user list for",
+            "example": "343"
+          },
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "Unique identifier of the conversation, which can be either a Hiver Conversation ID or a Gmail Thread ID.",
+              "default": ""
+            },
+            "description": "Unique identifier of the conversation, which can be either a Hiver Conversation ID or a Gmail Thread ID.",
+            "example": "343"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation, no response will be sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Request body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "object",
+                    "description": "",
+                    "example": {
+                      "name": ""
+                    },
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "",
+                        "example": ""
+                      }
+                    }
+                  },
+                  "assignee": {
+                    "type": "object",
+                    "description": "",
+                    "example": {
+                      "email": "bob@example.com"
+                    },
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "",
+                        "example": "bob@example.com"
+                      }
+                    }
+                  },
+                  "tags": {
+                    "type": "object",
+                    "description": "",
+                    "example": {
+                      "to_apply": [
+                        ""
+                      ],
+                      "to_remove": [
+                        ""
+                      ]
+                    },
+                    "properties": {
+                      "to_apply": {
+                        "type": "array",
+                        "description": "",
+                        "example": [
+                          ""
+                        ],
+                        "items": {
+                          "type": "array",
+                          "description": "",
+                          "example": "",
+                          "items": {}
+                        }
+                      },
+                      "to_remove": {
+                        "type": "array",
+                        "description": "",
+                        "example": [
+                          ""
+                        ],
+                        "items": {
+                          "type": "array",
+                          "description": "",
+                          "example": "",
+                          "items": {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inbox_id}/conversations/shared-drafts": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Create shared draft for conversation",
+        "description": "Create a Shared Draft in an inbox conversation\n\n**Note:** To create a Shared Draft, always use the Gmail Message ID returned for the **user authenticated with the shared mailbox email address (the source user).** Gmail IDs are user-specific and may not match across different users. If the source user's Gmail Message ID (`**id**`) is unavailable, you can use the global SMTP Message ID found in `**payload.headers**` under the header name `**Message-ID**` (e.g. `**<abc123@mail.gmail.com>**`) as a fallback. This ID is consistent across all users for the same email.",
+        "operationId": "Conversations_conversations/update-conversation-in-the-inbox-copy",
+        "parameters": [
+          {
+            "name": "inbox_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "343",
+              "description": "ID of the inbox in which the shared draft is being created.",
+              "default": ""
+            },
+            "description": "ID of the inbox in which the shared draft is being created.",
+            "example": "343"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created shared Draft",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "id": 1234,
+                        "shared_draft_id": 123,
+                        "reply_to_message_id": 123456
+                      },
+                      "properties": {
+                        "id": {
+                          "type": "number",
+                          "description": "Conversation ID",
+                          "example": 1234
+                        },
+                        "shared_draft_id": {
+                          "type": "number",
+                          "description": "Shared Draft ID",
+                          "example": 123
+                        },
+                        "reply_to_message_id": {
+                          "type": "number",
+                          "description": "Replied to Hiver Message ID",
+                          "example": 123456
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Request body",
+          "required": true,
+          "content": {
+            "application/multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "description": "Shared Draft Body",
+                    "example": " Sample Email body"
+                  },
+                  "reply_type": {
+                    "type": "string",
+                    "description": "Specifies the type of reply. Defaults to `reply` if not provided",
+                    "example": "reply"
+                  },
+                  "gmail_message_id": {
+                    "type": "string",
+                    "description": "Gmail Message ID. Required if hiver_message_id is not sent",
+                    "example": "19cfc4b2f216c9ez"
+                  },
+                  "hiver_message_id": {
+                    "type": "number",
+                    "description": "Hiver Message ID. Required if gmail_message_id is not sent",
+                    "example": 123456
+                  },
+                  "attachments[]": {
+                    "type": "string",
+                    "description": "Absolute file paths to the files that needs to be attached",
+                    "example": "/your/file/path.pdf"
+                  }
+                },
+                "required": [
+                  "body"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inboxes/{inboxId}/conversations/{conversationId}/notes": {
+      "post": {
+        "tags": [
+          "Conversations"
+        ],
+        "summary": "Create note on conversation",
+        "description": "Create a note on a conversation.\n\n**Note:** For mentions, list the teammate's email in <span style=\"background-color:rgb(248, 248, 248)\">`mentions`</span> and write the same bare email in <span style=\"background-color:rgb(248, 248, 248)\">`content`</span> where the mention should appear, it will be rendered as <span style=\"background-color:rgb(248, 248, 248)\">`@name`</span>.",
+        "operationId": "Conversations_conversations/create-note-on-conversation",
+        "parameters": [
+          {
+            "name": "inboxId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": "105902",
+              "description": "ID of the shared inbox the conversation belongs to.",
+              "default": ""
+            },
+            "description": "ID of the shared inbox the conversation belongs to.",
+            "example": "105902"
+          },
+          {
+            "name": "conversationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": "573741352",
+              "description": "Hiver conversation id or Gmail thread id",
+              "default": ""
+            },
+            "description": "Hiver conversation id or Gmail thread id",
+            "example": "573741352"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Bearer {token}",
+              "description": "",
+              "default": ""
+            },
+            "description": "",
+            "example": "Bearer {token}"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Note created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "description": "",
+                      "example": {
+                        "id": "35042650",
+                        "conversation_id": "573741352",
+                        "content": "cc @arvindhiver for review",
+                        "author": {
+                          "id": "540349",
+                          "email": "author@grexit.com"
+                        },
+                        "mentions": [
+                          "arvind.hiver@gmail.com"
+                        ],
+                        "parent_note_id": "14510",
+                        "attachments": [
+                          {
+                            "id": "a833291b-66f0-4716-8eee-a0dba4a9f0fa",
+                            "file_name": "invoice.pdf",
+                            "file_type": "pdf"
+                          }
+                        ],
+                        "created_at": "2026-07-21T14:24:22.000000Z"
+                      },
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "Unique ID of the created note",
+                          "example": "35042650"
+                        },
+                        "conversation_id": {
+                          "type": "string",
+                          "description": "ID of the conversation the note belongs to",
+                          "example": "573741352"
+                        },
+                        "content": {
+                          "type": "string",
+                          "description": "Note body text (mentions rendered as @handles)",
+                          "example": "cc @arvindhiver for review"
+                        },
+                        "author": {
+                          "type": "object",
+                          "description": "",
+                          "example": {
+                            "id": "540349",
+                            "email": "author@grexit.com"
+                          },
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "",
+                              "example": "540349"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "",
+                              "example": "author@grexit.com",
+                              "format": "email"
+                            }
+                          }
+                        },
+                        "mentions": {
+                          "type": "array",
+                          "description": "Emails of mentioned users",
+                          "example": [
+                            "arvind.hiver@gmail.com"
+                          ],
+                          "items": {
+                            "type": "string",
+                            "description": "",
+                            "example": "arvind.hiver@gmail.com"
+                          }
+                        },
+                        "parent_note_id": {
+                          "type": "string",
+                          "description": "ID of the parent note if this is a reply; null for top-level notes",
+                          "example": "14510"
+                        },
+                        "attachments": {
+                          "type": "array",
+                          "description": "",
+                          "example": [
+                            {
+                              "id": "a833291b-66f0-4716-8eee-a0dba4a9f0fa",
+                              "file_name": "invoice.pdf",
+                              "file_type": "pdf"
+                            }
+                          ],
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "",
+                                "example": "a833291b-66f0-4716-8eee-a0dba4a9f0fa",
+                                "format": "uuid"
+                              },
+                              "file_name": {
+                                "type": "string",
+                                "description": "",
+                                "example": "invoice.pdf"
+                              },
+                              "file_type": {
+                                "type": "string",
+                                "description": "",
+                                "example": "pdf"
+                              }
+                            }
+                          }
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "description": "Note creation timestamp (UTC)",
+                          "example": "2026-07-21T14:24:22.000000Z",
+                          "format": "date-time"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Request body",
+          "required": true,
+          "content": {
+            "application/multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "Note body. Plain text, emoji, and a safe subset of HTML. Required if attachment is not sent.",
+                    "example": "cc @arvindhiver for review"
+                  },
+                  "mentions": {
+                    "type": "array",
+                    "description": "Emails of teammates to @mention. ",
+                    "example": [
+                      "arvind.hiver@gmail.com"
+                    ],
+                    "items": {
+                      "type": "string",
+                      "description": "",
+                      "example": "arvind.hiver@gmail.com"
+                    }
+                  },
+                  "notify_all": {
+                    "type": "boolean",
+                    "description": "Notifies every inbox member and surfaces @all in the notes.",
+                    "example": false,
+                    "format": "binary"
+                  },
+                  "parent_note_id": {
+                    "type": "string",
+                    "description": "ID of a note in the same conversation to reply to (threaded).",
+                    "example": "14510"
+                  },
+                  "attachments": {
+                    "type": "string",
+                    "description": "File that needs to be attached to the note. Required if content is not sent.",
+                    "example": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "tags": [
+    {
+      "name": "Hiver API",
+      "description": ""
+    },
+    {
+      "name": "Inbox",
+      "description": ""
+    },
+    {
+      "name": "Conversations",
+      "description": ""
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://api2.hiverhq.com/v1"
+    }
+  ],
+  "x-theneo-metadata": {
+    "menu": [
+      {
+        "name": "Inbox",
+        "description": "An Inbox is an entity that has conversations & users. Most common form of an Inbox is a shared mailbox ([https://hiverhq.com/shared-inbox](https://hiverhq.com/shared-inbox)) which manages emails. The APIs only manage the shared mailbox. We plan to add other type of inboxes in the APIs soon. It can have tags to help manage the conversations better.\n\nFollowing is an example of an Inbox object\n\n<CodeBlock attributes='{\"isFitToPage\":true,\"style\":{},\"lang\":\"json\",\"label\":\"Plain text\"}'>\n  <CodeLine>    {</CodeLine>\n  <CodeLine>      \"id\": \"101\",</CodeLine>\n  <CodeLine>      \"display_name\": \"Customer Support\",</CodeLine>\n  <CodeLine>      \"channel_type\": \"email\",</CodeLine>\n  <CodeLine>      \"email\": \"info@hiver.com\",</CodeLine>\n  <CodeLine>      \"inbox_type\": \"user\",</CodeLine>\n  <CodeLine>      \"is_authorised\": false,</CodeLine>\n  <CodeLine>      \"source_user\": {</CodeLine>\n  <CodeLine>        \"id\": \"765676\",</CodeLine>\n  <CodeLine>        \"email\": \"info@hiver.com\"</CodeLine>\n  <CodeLine>      },</CodeLine>\n  <CodeLine>      \"created_at\": 176878888,</CodeLine>\n  <CodeLine>      \"updated_at\": 176878888</CodeLine>\n  <CodeLine>    }</CodeLine>\n</CodeBlock>\n\nFollowing is an example of an Inbox User object\n\n<CodeBlock attributes='{\"isFitToPage\":true,\"style\":{},\"lang\":\"json\",\"label\":\"Plain text\"}'>\n  <CodeLine>    {</CodeLine>\n  <CodeLine>      \"id\": \"456\",</CodeLine>\n  <CodeLine>      \"first_name\": \"Phoebe\",</CodeLine>\n  <CodeLine>      \"last_name\": \"Buffay\",</CodeLine>\n  <CodeLine>      \"email\": \"p.buffay@friends.com\",</CodeLine>\n  <CodeLine>      \"phone_number\": \"+19876543444\",</CodeLine>\n  <CodeLine>      \"is_joined\": false</CodeLine>\n  <CodeLine>    }</CodeLine>\n</CodeBlock>\n\nFollowing is an example of an Inbox Tag object\n\n<CodeBlock attributes='{\"isFitToPage\":true,\"style\":{},\"lang\":\"json\",\"label\":\"Plain text\"}'>\n  <CodeLine>    {</CodeLine>\n  <CodeLine>      \"id\": \"56789\",</CodeLine>\n  <CodeLine>      \"name\": \"Priority\",</CodeLine>\n  <CodeLine>      \"color_code\": \"#ce93d8\",</CodeLine>\n  <CodeLine>      \"type\": \"user\",</CodeLine>\n  <CodeLine>      \"created_at\": 1708945347</CodeLine>\n  <CodeLine>    }</CodeLine>\n</CodeBlock>",
+        "subSections": [
+          {
+            "name": "List all the inboxes",
+            "operationId": "Inbox_inbox/list-all-the-inboxes",
+            "description": "List all the inboxes"
+          },
+          {
+            "name": "Get an inbox by id",
+            "operationId": "Inbox_inbox/get-an-inbox-by-id",
+            "description": "Get an Inbox by Id"
+          },
+          {
+            "name": "Get all users in the inbox",
+            "operationId": "Inbox_inbox/get-all-users-in-the-inbox",
+            "description": "Get all users in the inbox"
+          },
+          {
+            "name": "Search users in the inbox",
+            "operationId": "Inbox_inbox/search-users-in-the-inbox",
+            "description": "Search users in the inbox"
+          },
+          {
+            "name": "Get tags in the inbox",
+            "operationId": "Inbox_inbox/get-tags-in-the-inbox",
+            "description": "Get tags in the inbox"
+          },
+          {
+            "name": "Search tags in the inbox",
+            "operationId": "Inbox_inbox/search-tags-in-the-inbox",
+            "description": "Search tags in the inbox"
+          },
+          {
+            "name": "Create tag in the inbox",
+            "operationId": "Inbox_inbox/create-tags-in-the-inbox",
+            "description": "Create tag in the inbox"
+          }
+        ]
+      },
+      {
+        "name": "Conversations",
+        "description": "A conversation can be part of one or more inboxes. It can be assigned to a member of the inbox, have a status and tags associated with it.\n\nFollowing is an example of a Conversation object\n\n<CodeBlock attributes='{\"isFitToPage\":true,\"style\":{},\"lang\":\"json\",\"label\":\"JSON\"}'>\n  <CodeLine>    {</CodeLine>\n  <CodeLine>      \"id\": \"234232\",</CodeLine>\n  <CodeLine>      \"assignee\": {</CodeLine>\n  <CodeLine>        \"assignee_type\": \"user\",</CodeLine>\n  <CodeLine>        \"assignee_id\": \"1028399\"</CodeLine>\n  <CodeLine>      },</CodeLine>\n  <CodeLine>      \"status\": \"open\",</CodeLine>\n  <CodeLine>      \"tag_ids\": [</CodeLine>\n  <CodeLine>        \"1234322\", \"343434\"</CodeLine>\n  <CodeLine>      ]</CodeLine>\n  <CodeLine>    }</CodeLine>\n</CodeBlock>",
+        "subSections": [
+          {
+            "name": "Get conversations in the inbox",
+            "operationId": "Conversations_conversations/get-conversations-in-the-inbox",
+            "description": "Get conversations in the inbox\n\n**Note:** The Gmail Thread IDs returned in the response are scoped to the **user authenticated with the shared mailbox email address (the source user)**. These IDs can be used directly in other Hiver APIs that require Gmail identifiers."
+          },
+          {
+            "name": "Get a conversation in the inbox",
+            "operationId": "Conversations_conversations/get-a-conversation-in-the-inbox",
+            "description": "Get a conversation in the inbox\n\n**Note:**\n\n*   The `conversation_id` field accepts either **Hiver conversation ID** or **Gmail thread ID**.\n    \n*   The Gmail Thread ID and Message IDs returned in the response are scoped to the **user authenticated with the shared mailbox email address (the source user)**. These IDs can be used directly in other Hiver APIs that require Gmail identifiers."
+          },
+          {
+            "name": "Update conversation in the inbox",
+            "operationId": "Conversations_conversations/update-conversation-in-the-inbox",
+            "description": "Update conversation in the inbox\n\n**Note**: The `conversation_id` field accepts either **Hiver conversation ID** or **Gmail thread ID.**"
+          },
+          {
+            "name": "Create shared draft for conversation",
+            "operationId": "Conversations_conversations/update-conversation-in-the-inbox-copy",
+            "description": "Create a Shared Draft in an inbox conversation\n\n**Note:** To create a Shared Draft, always use the Gmail Message ID returned for the **user authenticated with the shared mailbox email address (the source user).** Gmail IDs are user-specific and may not match across different users. If the source user's Gmail Message ID (`**id**`) is unavailable, you can use the global SMTP Message ID found in `**payload.headers**` under the header name `**Message-ID**` (e.g. `**<abc123@mail.gmail.com>**`) as a fallback. This ID is consistent across all users for the same email."
+          },
+          {
+            "name": "Create note on conversation",
+            "operationId": "Conversations_conversations/create-note-on-conversation",
+            "description": "Create a note on a conversation.\n\n**Note:** For mentions, list the teammate's email in <span style=\"background-color:rgb(248, 248, 248)\">`mentions`</span> and write the same bare email in <span style=\"background-color:rgb(248, 248, 248)\">`content`</span> where the mention should appear, it will be rendered as <span style=\"background-color:rgb(248, 248, 248)\">`@name`</span>."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+generated: '2026-08-22'
+method: derived
+source: openapi/hiver-api-openapi.json
+name: Hiver API data model
+note: >-
+  Derived from the response/request examples and inline schemas in Hiver's published OpenAPI.
+  The spec declares NO components.schemas - every shape is inlined per operation - so entities
+  below are reconstructed from those inline definitions and their examples. Field lists are
+  faithful to the contract; nothing has been added.
+root_entity: inbox
+id_style:
+  format: numeric-string
+  note: >-
+    Ids are numeric but typed inconsistently across the contract - `id` is a string on inbox,
+    user, tag and the single-conversation read, but a number in the conversation LIST response
+    and in the tag-create response (`tag_id`). Clients must coerce.
+  prefixes: none
+entities:
+  - name: inbox
+    description: A Hiver Shared Inbox - a shared email address such as support@ or billing@.
+    path: /inboxes
+    fields:
+      - {name: id, type: string, example: '101'}
+      - {name: display_name, type: string, example: Customer Support}
+      - {name: channel_type, type: string, example: email}
+      - {name: email, type: string, example: info@example.com}
+      - {name: inbox_type, type: string, example: user}
+      - {name: is_authorised, type: boolean}
+      - {name: source_user, type: object, fields: [id, email]}
+      - {name: created_at, type: integer, format: unix-epoch-seconds}
+      - {name: updated_at, type: integer, format: unix-epoch-seconds}
+    operations:
+      - Inbox_inbox/list-all-the-inboxes
+      - Inbox_inbox/get-an-inbox-by-id
+  - name: user
+    description: A Hiver agent who is a member of a Shared Inbox.
+    path: /inboxes/{inbox_id}/users
+    fields:
+      - {name: id, type: string, example: '456342'}
+      - {name: first_name, type: string}
+      - {name: last_name, type: string}
+      - {name: email, type: string}
+      - {name: phone_number, type: string}
+      - {name: is_joined, type: boolean}
+    operations:
+      - Inbox_inbox/get-all-users-in-the-inbox
+      - Inbox_inbox/search-users-in-the-inbox
+  - name: tag
+    description: A label applied to conversations within a Shared Inbox.
+    path: /inboxes/{inbox_id}/tags
+    fields:
+      - {name: id, type: string, example: '56789'}
+      - {name: name, type: string, example: Priority}
+      - {name: color_code, type: string, example: '#ce93d8'}
+      - {name: type, type: string, example: user}
+      - {name: created_at, type: integer, format: unix-epoch-seconds}
+    create_response_fields:
+      - {name: tag_id, type: integer}
+      - {name: name, type: string}
+      - {name: color_hexcode, type: string}
+      - {name: background_hexcode, type: string}
+      - {name: smid, type: integer, note: shared-mailbox id echoed back on create}
+      - {name: description, type: string}
+    field_drift: >-
+      The tag READ shape uses `id` + `color_code`; the tag CREATE response uses `tag_id` +
+      `color_hexcode` + `background_hexcode` for the same object. Two names for one field.
+    operations:
+      - Inbox_inbox/get-tags-in-the-inbox
+      - Inbox_inbox/search-tags-in-the-inbox
+      - Inbox_inbox/create-tags-in-the-inbox
+  - name: conversation
+    description: >-
+      An email thread inside a Shared Inbox. Addressable by Hiver conversation id OR by Gmail
+      thread id - the contract states the path parameter accepts either.
+    path: /inboxes/{inbox_id}/conversations
+    fields:
+      - {name: id, type: string|integer, note: string on single read, integer in list}
+      - {name: assignee, type: object, fields: [assignee_type, assignee_id]}
+      - {name: status, type: string, example: open}
+      - {name: tag_ids, type: array}
+      - {name: gmail_thread_id, type: string}
+      - {name: private_permalink, type: string, format: url}
+      - {name: public_permalink, type: string, format: url}
+      - {name: message_ids, type: array, fields: [hiver_message_id, gmail_message_id]}
+    operations:
+      - Conversations_conversations/get-conversations-in-the-inbox
+      - Conversations_conversations/get-a-conversation-in-the-inbox
+      - Conversations_conversations/update-conversation-in-the-inbox
+  - name: shared_draft
+    description: A draft reply composed collaboratively against a conversation.
+    path: /inboxes/{inbox_id}/conversations/shared-drafts
+    fields:
+      - {name: id, type: integer}
+      - {name: shared_draft_id, type: integer}
+      - {name: reply_to_message_id, type: integer}
+    operations:
+      - Conversations_conversations/update-conversation-in-the-inbox-copy
+    contract_gap: >-
+      The POST declares no requestBody schema at all, so the fields required to create a shared
+      draft are undiscoverable from the contract.
+  - name: note
+    description: An internal note on a conversation, supporting @mentions, threading and attachments.
+    path: /inboxes/{inboxId}/conversations/{conversationId}/notes
+    fields:
+      - {name: id, type: string}
+      - {name: conversation_id, type: string}
+      - {name: content, type: string}
+      - {name: author, type: object, fields: [id, email]}
+      - {name: mentions, type: array}
+      - {name: parent_note_id, type: string}
+      - {name: attachments, type: array, fields: [id, file_name, file_type]}
+      - {name: created_at, type: string, format: iso8601}
+    operations:
+      - Conversations_conversations/create-note-on-conversation
+    contract_gap: >-
+      No requestBody schema is declared for the note POST either.
+    timestamp_drift: >-
+      note.created_at is an ISO 8601 string while inbox/tag created_at are unix epoch integers.
+relationships:
+  - {from: inbox, to: user, type: has_many, via: 'GET /inboxes/{inbox_id}/users'}
+  - {from: inbox, to: tag, type: has_many, via: 'GET /inboxes/{inbox_id}/tags'}
+  - {from: inbox, to: conversation, type: has_many, via: 'GET /inboxes/{inbox_id}/conversations'}
+  - {from: inbox, to: user, type: has_one, via: source_user, note: the authenticated shared-mailbox owner}
+  - {from: conversation, to: user, type: belongs_to, via: assignee.assignee_id}
+  - {from: conversation, to: tag, type: has_many, via: tag_ids}
+  - {from: conversation, to: note, type: has_many, via: 'POST .../notes (no list endpoint published)'}
+  - {from: conversation, to: shared_draft, type: has_many, via: 'POST /conversations/shared-drafts'}
+  - {from: note, to: note, type: belongs_to, via: parent_note_id, note: note threading}
+  - {from: note, to: user, type: belongs_to, via: author.id}
+external_identifiers:
+  - system: Gmail
+    fields: ['gmail_thread_id', 'message_ids[].gmail_message_id']
+    note: >-
+      Hiver conversations carry their Gmail thread and message ids, and those ids are accepted as
+      path parameters. This is the join key between Hiver and the Google Workspace API surface,
+      and it is scoped to the shared-mailbox source user.
+read_only_entities: [inbox, user]
+write_entities: [tag, conversation, shared_draft, note]
+no_delete_endpoints: true

@@ -1,0 +1,50 @@
+generated: '2026-08-22'
+method: searched
+source: https://developer.hiverhq.com/hiver-api
+docs: https://help.hiverhq.com/hiver-api/hiver-api
+name: Hiver API authentication
+summary: >-
+  The Hiver REST API authenticates with a single account-scoped API key presented as an
+  HTTP Bearer token. There is no OAuth flow, no scopes, and no per-user delegation: the key
+  is minted by a Hiver administrator in the admin panel and carries admin privileges.
+schemes:
+  - id: bearer_api_key
+    type: http
+    scheme: bearer
+    in: header
+    header: Authorization
+    format: 'Bearer <api-key>'
+    description: >-
+      Account API key created by a Hiver admin under Admin Panel -> Integrations ->
+      Developer APIs -> Create an API key. The key must be toggled on before it will
+      authenticate. Presented verbatim as an HTTP Bearer token.
+    example_request: "curl 'https://api2.hiverhq.com/v1/inboxes' --header 'Authorization: Bearer <your-access-token>'"
+    source: https://developer.hiverhq.com/hiver-api
+key_management:
+  who_can_create: Hiver administrators only
+  location: Hiver Admin Panel -> Integrations -> Developer APIs
+  enable_toggle: true
+  privilege_model: >-
+    "The API key will have the access privileges of an admin user." Hiver does not offer a
+    least-privilege or per-inbox key; every key is effectively an admin credential.
+  rotation: >-
+    Hiver documents deletion, not rotation - "If you suspect that any of your API keys have
+    been compromised, you must take immediate action and delete them from the Hiver admin panel."
+  expiry: not documented
+oauth:
+  api_oauth: false
+  note: >-
+    The Hiver REST API does not offer OAuth. A separate, unrelated OAuth authorization-server
+    document is served at https://hiverhq.com/.well-known/oauth-authorization-server for a
+    WordPress MCP plugin on the marketing site (scope "mcp"); it does not govern api2.hiverhq.com.
+    See well-known/hiver-well-known.yml and mcp/hiver-mcp.yml.
+spec_gap:
+  observed: >-
+    openapi/hiver-api-openapi.json declares NO components.securitySchemes and NO security[].
+    Authentication is modelled as a required `Authorization` header PARAMETER on every one of
+    the 12 operations, with example "Bearer {token}".
+  impact: >-
+    Generated clients and agents cannot discover the auth model from the contract alone; it has
+    to be read out of the prose introduction. Adding a `bearerAuth` http/bearer securityScheme
+    and a root-level `security` block would fix it without changing a single runtime behaviour.
+  captured_in: overlays/hiver-api-overlay.yaml

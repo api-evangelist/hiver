@@ -1,0 +1,56 @@
+generated: '2026-08-22'
+method: searched
+source: https://developer.hiverhq.com/hiver-api
+name: Hiver API lifecycle
+versioning:
+  scheme: uri-path
+  current_version: v1
+  base_url: https://api2.hiverhq.com/v1
+  spec_info_version: 1.0.0
+  portal_version_label: v1
+  portal_version_source: https://developer.hiverhq.com/hiver-api
+  policy_published: false
+  note: >-
+    The developer portal exposes exactly one version (v1, marked default). Hiver publishes no
+    version-support policy, no version-negotiation header and no statement of how long a major
+    version is supported.
+deprecation:
+  policy_published: false
+  sunset_header: not observed
+  deprecation_header: not observed
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header contract, and no operation in
+    openapi/hiver-api-openapi.json carries `deprecated: true`.
+status_page:
+  published: true
+  url: https://status.hiverhq.com/
+  http_status: 200
+  subscribe: email and SMS notifications on incident create/update/resolve
+  referenced_from_docs: true
+  docs_quote: >-
+    '500 Internal server error - If this happens, get in touch with us, or watch for any
+    degradation in status.hiverhq.com'
+  history_api: not published
+sla:
+  published: false
+  note: No public uptime SLA or credit schedule was found on hiverhq.com.
+changelog:
+  published: true
+  url: https://updates.hiverhq.com/changelog
+  platform: Canny
+  rss: https://updates.hiverhq.com/changelog (RSS link offered on page)
+  detail: changelog/hiver-changelog.yml
+roadmap:
+  published: true
+  url: https://updates.hiverhq.com/
+  platform: Canny
+  stages: [Under Review, Planned, In Progress]
+  note: >-
+    Public product roadmap with vote counts, split across two boards - Hiver in Gmail (128
+    items) and Hiver Omni (58 items). API-adjacent items currently on it include
+    'Enterprise user provisioning (SCIM)' and 'API block in automations' (both In Progress).
+support:
+  help_center: https://help.hiverhq.com/
+  security_contact: security@hiverhq.com

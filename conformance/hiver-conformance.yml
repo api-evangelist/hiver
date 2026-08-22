@@ -1,0 +1,89 @@
+generated: '2026-08-22'
+method: searched
+source: https://hiverhq.com/security-center
+derived_from: openapi/hiver-api-openapi.json
+name: Hiver conformance and compliance
+summary: >-
+  Hiver's compliance posture is strong and publicly evidenced; its API-standards posture is thin.
+  The contract uses plain REST/JSON with no cross-cutting API standard adopted - no OAuth, no
+  OpenID Connect, no RFC 9457 problem details, no RFC 8594 deprecation signalling, no
+  RateLimit header standard, no SCIM.
+standards:
+  - id: openapi
+    conforms: true
+    version: 3.0.2
+    evidence: >-
+      openapi/hiver-api-openapi.json, published by Hiver on its own Theneo developer portal
+      (project 'Hiver OpenAPI Prod') and downloadable from the portal's Download API Spec control.
+  - id: rest
+    conforms: true
+    evidence: 'Resource-oriented URIs under https://api2.hiverhq.com/v1 using GET/POST/PATCH.'
+  - id: bearer-token
+    conforms: true
+    evidence: 'RFC 6750-style Authorization: Bearer <api-key> on every operation.'
+    caveat: >-
+      The token is a static admin API key, not an OAuth access token, and the spec declares it as
+      a header PARAMETER rather than a securityScheme.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No OAuth flow governs the REST API. An unrelated RFC 8414 document exists at
+      https://hiverhq.com/.well-known/oauth-authorization-server for a WordPress MCP plugin
+      (scope 'mcp'); it does not apply to api2.hiverhq.com.
+  - id: oidc
+    conforms: false
+    evidence: '/.well-known/openid-configuration returns 404 on hiverhq.com.'
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors are documented as {"errors":[{"message":...}]} or {"Message":...}, not
+      application/problem+json. See errors/hiver-problem-types.yml.
+  - id: rfc9116
+    conforms: false
+    evidence: 'No /.well-known/security.txt on any Hiver host, despite a published disclosure policy.'
+  - id: rfc8594
+    conforms: false
+    evidence: 'No Sunset or Deprecation headers documented or observed; no deprecation policy.'
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Opaque forward cursor - limit (10-100), sort_by, sort_order, next_page; termination when
+      next_page is null. Documented at https://developer.hiverhq.com/hiver-api.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header or deduplication window anywhere in the docs or contract, while
+      clients are simultaneously told to retry with exponential backoff on 429.
+  - id: rate-limit-headers
+    conforms: false
+    evidence: >-
+      Limits are documented in prose only (1 RPS per account, 5000/day); no RateLimit-* or
+      Retry-After response header contract is published.
+  - id: scim
+    conforms: false
+    evidence: >-
+      'Enterprise user provisioning (SCIM)' is an In Progress item on the public Hiver Omni
+      roadmap at https://updates.hiverhq.com/ - planned, not shipped.
+  - id: webhooks
+    conforms: partial
+    evidence: >-
+      Webhooks are advertised on https://hiverhq.com/integrations ('Open APIs and webhooks let
+      you pull any data point in and push updates back out') but no event catalog, payload
+      schema or subscription endpoint is published. See asyncapi/hiver-webhooks.yml.
+domain_standard:
+  applicable: false
+  note: >-
+    Shared-inbox / helpdesk ticketing has no adopted machine-readable domain standard for a
+    contract to declare, so this dimension is not applicable rather than failed. Nothing in the
+    Hiver contract asserts a domain URN, $metadata surface or industry message type.
+compliance:
+  published: true
+  page: https://hiverhq.com/security-center
+  certifications:
+    - ISO/IEC 27001 (certificate PDF published)
+    - SOC 2 Type II (report on NDA request to security@hiverhq.com)
+  regulatory:
+    - GDPR
+    - CCPA
+    - HIPAA (claimed; Elite-plan entitlement)
+  detail: security/hiver-trust-center.yml

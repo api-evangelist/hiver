@@ -1,0 +1,27 @@
+generated: '2026-08-22'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: hiverhq.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 25 21:58:47 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: developer.hiverhq.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 20 17:38:44 2026 GMT
+  hsts: null
+- host: api2.hiverhq.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  3 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: hiverhq.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,0 +1,54 @@
+generated: '2026-08-22'
+method: searched
+source: https://hiverhq.com/security-center
+name: Hiver trust and security surface
+trust_center:
+  url: https://trustcenter.hiverhq.com/
+  http_status: 200
+  linked_from: https://hiverhq.com/security-center
+security_center:
+  url: https://hiverhq.com/security-center
+  http_status: 200
+  covers:
+    - Security Transparency & Data Privacy
+    - Security Practices
+    - Infrastructure and Physical security
+    - Network Security
+    - Storage and Backup
+    - Google Workspace data access and Authentication
+    - Payment Processing
+    - Compliances
+certifications:
+  - name: ISO/IEC 27001
+    status: certified
+    evidence_url: https://hiverhq.com/wp-content/uploads/2026/03/hiver_iso_certificate_2026.pdf
+    evidence_http_status: 200
+    note: Certificate PDF published openly - no NDA, no form.
+  - name: SOC 2 Type II
+    status: attested
+    evidence_url: null
+    availability: >-
+      'The complete SOC 2 Type II report will be available upon a request sent to
+      security@hiverhq.com under a non-disclosure commitment.'
+    note: Gated behind an NDA request; the attestation itself is claimed publicly.
+  - name: HIPAA
+    status: claimed
+    note: >-
+      Listed as an Elite-plan entitlement ('SSO, HIPAA-compliant handling, and custom roles')
+      and asserted in the pricing FAQ ('Hiver is GDPR, SOC 2 Type II, ISO 27001, CCPA, and HIPAA
+      compliant'). No BAA or third-party attestation is published.
+    source: https://hiverhq.com/pricing/hiver-omni
+regulatory_programs:
+  - name: GDPR
+    status: readiness program completed
+    url: https://hiverhq.com/gdpr
+    http_status: 200
+  - name: CCPA
+    status: compliant
+    note: 'Hiver does not sell (as the term is defined in the CCPA) the personal information we collect.'
+transparency:
+  subprocessors_url: https://hiverhq.com/third-party-subprocessors
+  ai_trust_url: https://hiverhq.com/ai-trust-security
+  cookie_policy_url: https://hiverhq.com/cookie-policy
+  payment_processor: Stripe
+  card_data_stored: false

@@ -1,0 +1,42 @@
+generated: '2026-08-22'
+method: searched
+source: https://developer.hiverhq.com/hiver-api
+name: Hiver API rate limits
+limit_count: 2
+scope_model: per-account
+enforcement_status: 429
+retry_after_header: false
+response_headers: []
+headers_documented: false
+limits:
+  - id: per-second
+    scope: per-account
+    window: 1s
+    limit: 1
+    unit: requests
+    burst: none documented
+    note: >-
+      'Hiver enforces rate-limits based per account. The current rate is limited at 1 RPS
+      (request per second).'
+  - id: per-day
+    scope: per-account
+    window: 24h
+    limit: 5000
+    unit: requests
+    note: >-
+      'Also, the APIs are limited to 5000 requests per day. Please get in touch with us if you
+      want to increase this.' Raising the ceiling is a sales conversation, not a self-serve setting.
+exhaustion:
+  status: 429
+  body: Too Many Requests
+  guidance: Retry with exponential backoff.
+  penalty: >-
+    'Continuous retries with 429 error could result in the client-ip/api-key getting blacklisted.'
+observability_gap: >-
+  Hiver publishes NO rate-limit response headers - no RateLimit-Limit/Remaining/Reset, no
+  X-RateLimit-*, no Retry-After. An agent cannot read its remaining budget or a server-supplied
+  backoff hint; it can only discover the ceiling by hitting it. At 1 RPS this is the single
+  most consequential runtime gap in the Hiver contract.
+plan_gate:
+  note: API access is a Pro-plan-and-above entitlement.
+  source: https://hiverhq.com/pricing/hiver-omni

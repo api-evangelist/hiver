@@ -64,5 +64,19 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hiver is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/hiver_stock/
+Hiver (Hiver Inc., originally GrexIt) builds an AI-powered customer service platform for teams that
+run support out of shared email addresses — Hiver in Gmail, a Chrome-extension helpdesk that turns
+shared inboxes like support@ and billing@ into assignable, SLA-tracked queues, and Hiver Omni, a
+standalone omnichannel platform covering email, live chat, Slack, voice, WhatsApp, a help center and
+a customer portal.
+
+Hiver publishes a public REST API (v1) for Shared Inboxes, conversations, users, tags and internal
+notes, documented on a Theneo developer portal with a downloadable OpenAPI 3.0.2 contract. API access
+is gated to the Pro plan and above.
+
+- Website: https://hiverhq.com/
+- Developer portal: https://developer.hiverhq.com/
+- API reference: https://developer.hiverhq.com/hiver-api
+- API base URL: https://api2.hiverhq.com/v1
+- Status: https://status.hiverhq.com/
+- Changelog: https://updates.hiverhq.com/changelog
