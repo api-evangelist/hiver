@@ -42,25 +42,16 @@ x-enrichment:
   artifacts_added: 25
   pass: local-v1
 apis:
-- name: Hiver API
-  description: >-
-    The Hiver REST API (v1) exposes Shared Inboxes and their conversations, users, tags and
-    internal notes. Twelve operations across two resources let an integration list and read
-    inboxes, enumerate and search inbox users and tags, create tags, list and read conversations,
-    update a conversation's status/assignee/tags, create a shared draft and post an internal note.
-    Authentication is a single admin-scoped API key sent as an HTTP Bearer token; responses are
-    JSON wrapped in a `data` envelope with opaque-cursor pagination.
+- aid: hiver:hiver-conversations-api
+  name: Hiver Conversations API
+  description: The Conversations API from Hiver — 4 operation(s) for conversations.
   humanURL: https://developer.hiverhq.com/hiver-api
   baseURL: https://api2.hiverhq.com/v1
   tags:
-  - Customer Service
-  - Shared Inbox
   - Conversations
-  - Tags
-  - Notes
   properties:
   - type: OpenAPI
-    url: openapi/hiver-api-openapi.json
+    url: openapi/hiver-conversations-api-openapi.yml
   - type: Documentation
     url: https://developer.hiverhq.com/hiver-api
   - type: APIReference
@@ -77,11 +68,39 @@ apis:
     url: rate-limits/hiver-rate-limits.yml
   - type: DataModel
     url: data-model/hiver-data-model.yml
-  - type: Overlay
-    url: overlays/hiver-api-overlay.yaml
+  - type: Lifecycle
+    url: lifecycle/hiver-lifecycle.yml
+- aid: hiver:hiver-inbox-api
+  name: Hiver Inbox API
+  description: The Inbox API from Hiver — 6 operation(s) for inbox.
+  humanURL: https://developer.hiverhq.com/hiver-api
+  baseURL: https://api2.hiverhq.com/v1
+  tags:
+  - Inbox
+  properties:
+  - type: OpenAPI
+    url: openapi/hiver-inbox-api-openapi.yml
+  - type: Documentation
+    url: https://developer.hiverhq.com/hiver-api
+  - type: APIReference
+    url: https://developer.hiverhq.com/api-runner/hiverhq/hiver-api
+  - type: GettingStarted
+    url: https://help.hiverhq.com/hiver-api/hiver-api
+  - type: Authentication
+    url: authentication/hiver-authentication.yml
+  - type: Conventions
+    url: conventions/hiver-conventions.yml
+  - type: ErrorCatalog
+    url: errors/hiver-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/hiver-rate-limits.yml
+  - type: DataModel
+    url: data-model/hiver-data-model.yml
   - type: Lifecycle
     url: lifecycle/hiver-lifecycle.yml
 common:
+- type: Overlay
+  url: overlays/hiver-api-overlay.yaml
 - type: Website
   url: https://hiverhq.com/
 - type: DeveloperPortal
