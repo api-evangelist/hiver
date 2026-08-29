@@ -9,6 +9,18 @@ description: >-
   publishes a public REST API for Shared Inboxes, conversations, users, tags and internal notes,
   documented on a Theneo developer portal with a downloadable OpenAPI 3.0.2 contract, and gates
   API access to its Pro plan and above.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://hiverhq.com/wp-content/uploads/2025/05/hiver-dark-logo@2x.png
 url: https://raw.githubusercontent.com/api-evangelist/hiver/refs/heads/main/apis.yml
 x-type: company
