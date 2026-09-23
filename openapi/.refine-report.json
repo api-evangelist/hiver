@@ -1,0 +1,22 @@
+{
+  "provider": "hiver",
+  "sources": [
+    "_original/hiver-api-openapi.json"
+  ],
+  "outputs": [
+    "hiver-conversations-api-openapi.yml",
+    "hiver-inbox-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hiver-api-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "hiver-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hiver-inbox-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

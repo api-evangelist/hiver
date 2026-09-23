@@ -1,0 +1,33 @@
+# Front Door AI Index — hiver — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: hiver
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: hiverhq.com
+  final_host: hiverhq.com
+  ownership: own
+  owner: hiver
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 154
+  host_score: 154
+  density: 45.89
+  words: 3356
+  tiers:
+    agentic: 49
+    core: 105
+    model: 0
+  ambiguous: 44
+  top_terms:
+    AI: 105
+    agent: 34
+    AI agent: 27
+    copilot: 11
+    agentic: 9
+    intelligence: 7
+    automation: 3
+    MCP: 1
+    chatbot: 1

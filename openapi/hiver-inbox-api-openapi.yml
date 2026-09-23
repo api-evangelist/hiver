@@ -13,7 +13,6 @@ paths:
       tags:
       - Inbox
       summary: List all the inboxes
-      description: List all the inboxes
       operationId: Inbox_inbox/list-all-the-inboxes
       parameters:
       - name: Authorization
@@ -234,7 +233,6 @@ paths:
       tags:
       - Inbox
       summary: Get all users in the inbox
-      description: Get all users in the inbox
       operationId: Inbox_inbox/get-all-users-in-the-inbox
       parameters:
       - name: inbox_id
@@ -331,7 +329,6 @@ paths:
       tags:
       - Inbox
       summary: Search users in the inbox
-      description: Search users in the inbox
       operationId: Inbox_inbox/search-users-in-the-inbox
       parameters:
       - name: inbox_id
@@ -438,7 +435,6 @@ paths:
       tags:
       - Inbox
       summary: Get tags in the inbox
-      description: Get tags in the inbox
       operationId: Inbox_inbox/get-tags-in-the-inbox
       parameters:
       - name: inbox_id
@@ -528,7 +524,6 @@ paths:
       tags:
       - Inbox
       summary: Create tag in the inbox
-      description: Create tag in the inbox
       operationId: Inbox_inbox/create-tags-in-the-inbox
       parameters:
       - name: inbox_id
@@ -620,7 +615,6 @@ paths:
       tags:
       - Inbox
       summary: Search tags in the inbox
-      description: Search tags in the inbox
       operationId: Inbox_inbox/search-tags-in-the-inbox
       parameters:
       - name: inbox_id

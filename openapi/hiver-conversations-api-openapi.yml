@@ -134,7 +134,16 @@ paths:
       tags:
       - Conversations
       summary: Get a conversation in the inbox
-      description: "Get a conversation in the inbox\n\n**Note:**\n\n*   The `conversation_id` field accepts either **Hiver conversation ID** or **Gmail thread ID**.\n    \n*   The Gmail Thread ID and Message IDs returned in the response are scoped to the **user authenticated with the shared mailbox email address (the source user)**. These IDs can be used directly in other Hiver APIs that require Gmail identifiers."
+      description: 'Get a conversation in the inbox
+
+
+        **Note:**
+
+
+        * The `conversation_id` field accepts either **Hiver conversation ID** or **Gmail thread ID**.
+
+
+        * The Gmail Thread ID and Message IDs returned in the response are scoped to the **user authenticated with the shared mailbox email address (the source user)**. These IDs can be used directly in other Hiver APIs that require Gmail identifiers.'
       operationId: Conversations_conversations/get-a-conversation-in-the-inbox
       parameters:
       - name: inbox_id
@@ -364,7 +373,7 @@ paths:
       description: 'Create a Shared Draft in an inbox conversation
 
 
-        **Note:** To create a Shared Draft, always use the Gmail Message ID returned for the **user authenticated with the shared mailbox email address (the source user).** Gmail IDs are user-specific and may not match across different users. If the source user''s Gmail Message ID (`**id**`) is unavailable, you can use the global SMTP Message ID found in `**payload.headers**` under the header name `**Message-ID**` (e.g. `**<abc123@mail.gmail.com>**`) as a fallback. This ID is consistent across all users for the same email.'
+        **Note:** To create a Shared Draft, always use the Gmail Message ID returned for the **user authenticated with the shared mailbox email address (the source user).** Gmail IDs are user-specific and may not match across different users. If the source user''s Gmail Message ID (`**id**`) is unavailable, you can use the global SMTP Message ID found in `**payload.headers**` under the header name `**Message-ID**` (e.g. `****`) as a fallback. This ID is consistent across all users for the same email.'
       operationId: Conversations_conversations/update-conversation-in-the-inbox-copy
       parameters:
       - name: inbox_id
@@ -453,7 +462,7 @@ paths:
       description: 'Create a note on a conversation.
 
 
-        **Note:** For mentions, list the teammate''s email in <span style="background-color:rgb(248, 248, 248)">`mentions`</span> and write the same bare email in <span style="background-color:rgb(248, 248, 248)">`content`</span> where the mention should appear, it will be rendered as <span style="background-color:rgb(248, 248, 248)">`@name`</span>.'
+        **Note:** For mentions, list the teammate''s email in `mentions` and write the same bare email in `content` where the mention should appear, it will be rendered as `@name`.'
       operationId: Conversations_conversations/create-note-on-conversation
       parameters:
       - name: inboxId
