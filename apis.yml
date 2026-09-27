@@ -49,7 +49,7 @@ tags:
 - Shared Inbox
 - Email
 - Ticketing
-- Customer-Support
+- Customer Support
 - Collaboration
 - Gmail
 - Google Workspace
@@ -72,6 +72,7 @@ tags_raw:
 - Live Chat
 - SaaS
 - Artificial Intelligence
+- Customer-Support
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
