@@ -141,6 +141,9 @@ apis:
   - type: Lifecycle
     url: lifecycle/hiver-lifecycle.yml
 common:
+- type: CapabilityMap
+  url: capabilities/hiver-capability-edges.yml
+  name: Hiver Business Capability Map
 - type: Overlay
   url: overlays/hiver-api-overlay.yaml
 - type: Website
