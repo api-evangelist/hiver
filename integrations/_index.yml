@@ -67,3 +67,16 @@
     builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null
+- slug: hiver-google-workspace-own
+  label: Google Workspace (own)
+  partner: google-workspace
+  partner_name: Google Workspace (own)
+  category: Google Workspace app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://workspace.google.com/marketplace/app/hiver_aipowered_customer_service_platfor/300342089616
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
