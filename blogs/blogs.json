@@ -5,14 +5,21 @@
       "source": "https://hiverhq.com/blog",
       "feed_url": "https://hiverhq.com/blog/feed/",
       "title": "",
-      "saved": 1,
+      "saved": 0,
       "method": "discovered"
     },
     {
       "source": "https://hiverhq.com/feed",
       "feed_url": "https://hiverhq.com/feed",
       "title": "",
-      "saved": 10,
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://hiverhq.com/blog/feed/",
+      "feed_url": "https://hiverhq.com/blog/feed/",
+      "title": "",
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -23,6 +30,6 @@
       "method": "none"
     }
   ],
-  "post_count": 11,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 20,
+  "fetched": "2026-10-17T14:53:57Z"
 }
