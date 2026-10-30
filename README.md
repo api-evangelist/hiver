@@ -64,19 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hiver (Hiver Inc., originally GrexIt) builds an AI-powered customer service platform for teams that
-run support out of shared email addresses — Hiver in Gmail, a Chrome-extension helpdesk that turns
-shared inboxes like support@ and billing@ into assignable, SLA-tracked queues, and Hiver Omni, a
-standalone omnichannel platform covering email, live chat, Slack, voice, WhatsApp, a help center and
-a customer portal.
+Hiver (Hiver Inc., originally GrexIt) builds an AI-powered customer service platform for teams that run support out of shared email addresses. It ships in two forms: Hiver in Gmail, a Chrome-extension helpdesk that turns shared inboxes like support@ and billing@ into assignable, SLA-tracked queues without leaving Gmail; and Hiver Omni, a standalone omnichannel platform covering email, live chat, Slack, voice, WhatsApp, a help center and a customer portal. Hiver publishes a public REST API for Shared Inboxes, conversations, users, tags and internal notes, documented on a Theneo developer portal with a downloadable OpenAPI 3.0.2 contract, and gates API access to its Pro plan and above.
 
-Hiver publishes a public REST API (v1) for Shared Inboxes, conversations, users, tags and internal
-notes, documented on a Theneo developer portal with a downloadable OpenAPI 3.0.2 contract. API access
-is gated to the Pro plan and above.
+**Areas:** Company · Customer Service · Help Desk · Shared Inbox · Email · Ticketing · Collaboration · Gmail · Google Workspace · Omnichannel · Live Chat · Software-as-a-Service
 
-- Website: https://hiverhq.com/
-- Developer portal: https://developer.hiverhq.com/
-- API reference: https://developer.hiverhq.com/hiver-api
-- API base URL: https://api2.hiverhq.com/v1
-- Status: https://status.hiverhq.com/
-- Changelog: https://updates.hiverhq.com/changelog
+## Hiver on APIs.io
+
+Everything profiled for Hiver is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hiver/](https://apis.io/providers/hiver/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Hiver Conversations API](https://apis.io/apis/hiver/hiver-conversations-api/) — The Conversations API from Hiver — 4 operation(s) for conversations.
+- [Hiver Inbox API](https://apis.io/apis/hiver/hiver-inbox-api/) — The Inbox API from Hiver — 6 operation(s) for inbox.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Hiver Webhooks](https://apis.io/asyncapis/hiver/hiver-webhooks/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Hiver Api Overlay](https://apis.io/overlays/hiver/hiver-api-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hiver Authentication](https://apis.io/security/hiver/hiver-authentication/)
+- [Hiver Domain Security](https://apis.io/security/hiver/hiver-domain-security/)
+- [Hiver Trust Center](https://apis.io/security/hiver/hiver-trust-center/)
+- [Hiver Vulnerability Disclosure](https://apis.io/security/hiver/hiver-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Hiver Plans Pricing](https://apis.io/plans/hiver/hiver-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hiver Rate Limits](https://apis.io/rate-limits/hiver/hiver-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://hiverhq.com/)
+- [Documentation](https://developer.hiverhq.com/hiver-api)
+- [Getting started](https://help.hiverhq.com/hiver-api/hiver-api)
+- [API reference](https://developer.hiverhq.com/api-runner/hiverhq/hiver-api)
+- [Pricing](https://hiverhq.com/pricing)
+- [Sign up](https://hiverhq.com/signup)
+- [Support](https://help.hiverhq.com/)
+- [Changelog](https://updates.hiverhq.com/changelog)
+- [Blog](https://hiverhq.com/blog)
+- [Security](https://hiverhq.com/disclosure)
+- [Compliance](https://hiverhq.com/security-center)
+- [Trust centre](https://trustcenter.hiverhq.com/)
+- [Terms of service](https://hiverhq.com/terms)
+- [Privacy policy](https://hiverhq.com/privacy)
+- [GitHub](https://github.com/GrexIt)
+- [Status](https://status.hiverhq.com/)
+
+## API Evangelist rating
+
+**Kin Score 53.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.1 |
+| Contract governance | 18.2 |
+| Operational transparency | 65.8 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 48.7 |
+
+**Agent readiness 42.7** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hiver/](https://apis.io/providers/hiver/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hiver: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hiver/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
